@@ -1,0 +1,10 @@
+Z:\Programming Languages\C#\ITRI_615_Crypto_Proj\Crypto_Project\Crypto_Project\bin\Debug\Crypto_Project.exe.config
+Z:\Programming Languages\C#\ITRI_615_Crypto_Proj\Crypto_Project\Crypto_Project\bin\Debug\Crypto_Project.exe
+Z:\Programming Languages\C#\ITRI_615_Crypto_Proj\Crypto_Project\Crypto_Project\bin\Debug\Crypto_Project.pdb
+Z:\Programming Languages\C#\ITRI_615_Crypto_Proj\Crypto_Project\Crypto_Project\obj\Debug\Crypto_Project.csprojAssemblyReference.cache
+Z:\Programming Languages\C#\ITRI_615_Crypto_Proj\Crypto_Project\Crypto_Project\obj\Debug\Crypto_Project.frmMain.resources
+Z:\Programming Languages\C#\ITRI_615_Crypto_Proj\Crypto_Project\Crypto_Project\obj\Debug\Crypto_Project.Properties.Resources.resources
+Z:\Programming Languages\C#\ITRI_615_Crypto_Proj\Crypto_Project\Crypto_Project\obj\Debug\Crypto_Project.csproj.GenerateResource.cache
+Z:\Programming Languages\C#\ITRI_615_Crypto_Proj\Crypto_Project\Crypto_Project\obj\Debug\Crypto_Project.csproj.CoreCompileInputs.cache
+Z:\Programming Languages\C#\ITRI_615_Crypto_Proj\Crypto_Project\Crypto_Project\obj\Debug\Crypto_Project.exe
+Z:\Programming Languages\C#\ITRI_615_Crypto_Proj\Crypto_Project\Crypto_Project\obj\Debug\Crypto_Project.pdb
