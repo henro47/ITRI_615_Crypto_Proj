@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace Crypto_Project
 {
@@ -25,7 +26,34 @@ namespace Crypto_Project
 
         private void btnUpload_Click(object sender, EventArgs e)
         {
+            if (txtKey.Text != "")
+            {
 
+            }
+            else
+            {
+                MessageBox.Show("Please enter or generate key", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+           
         }
+
+        private void rbEncrypt_CheckedChanged(object sender, EventArgs e)
+        {
+            if(rbEncrypt.Checked)
+            {
+                rbDecrypt.Checked = false;
+            }
+        
+        }
+
+        private void rbDecrypt_CheckedChanged(object sender, EventArgs e)
+        {
+            if(rbDecrypt.Checked)
+            {
+                rbEncrypt.Checked = false;
+            }
+           
+        }
+
     }
 }
