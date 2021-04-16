@@ -33,7 +33,8 @@ namespace Crypto_Project
                 if(openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     file_path = openFileDialog1.FileName;
-                    byte[] file_byte_data = File.ReadAllBytes(file_path);
+                    byte[] key_byte = new KeyGenerator().keyStringToByteArray(txtKey.Text);
+                    byte[] file_byte_data = File.ReadAllBytes(file_path);               
                     VigenereCipher vigenere = new VigenereCipher(file_byte_data);
                 }
             }

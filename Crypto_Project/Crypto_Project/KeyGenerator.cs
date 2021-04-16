@@ -28,5 +28,10 @@ namespace Crypto_Project
             return res.ToString();
         }
 
+        public byte[] keyStringToByteArray(string key)
+        {
+            return Encoding.ASCII.GetBytes(key);
+        }
+
     }
 }
