@@ -39,6 +39,7 @@
             this.tpVernam = new System.Windows.Forms.TabPage();
             this.tpTransposition = new System.Windows.Forms.TabPage();
             this.tpOwnAlgo = new System.Windows.Forms.TabPage();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tcAlgorithms.SuspendLayout();
             this.tpVigenere.SuspendLayout();
             this.SuspendLayout();
@@ -160,6 +161,10 @@
             this.tpOwnAlgo.Text = "Own Algo";
             this.tpOwnAlgo.UseVisualStyleBackColor = true;
             // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -189,6 +194,7 @@
         private System.Windows.Forms.Button btnUpload;
         private System.Windows.Forms.RadioButton rbDecrypt;
         private System.Windows.Forms.RadioButton rbEncrypt;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
     }
 }
 

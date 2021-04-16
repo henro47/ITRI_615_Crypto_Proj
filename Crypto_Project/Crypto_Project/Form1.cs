@@ -13,6 +13,7 @@ namespace Crypto_Project
 {
     public partial class frmMain : Form
     {
+        private string file_path; 
         public frmMain()
         {
             InitializeComponent();
@@ -28,7 +29,13 @@ namespace Crypto_Project
         {
             if (txtKey.Text != "")
             {
-
+                openFileDialog1.InitialDirectory = @"C:\";
+                if(openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    file_path = openFileDialog1.FileName;
+                    byte[] file_byte_data = File.ReadAllBytes(file_path);
+                    VigenereCipher vigenere = new VigenereCipher(file_byte_data);
+                }
             }
             else
             {
