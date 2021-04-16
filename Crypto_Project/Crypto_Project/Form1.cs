@@ -34,7 +34,7 @@ namespace Crypto_Project
                 {
                     file_path = openFileDialog1.FileName;
                     byte[] key_byte = new KeyGenerator().keyStringToByteArray(txtKey.Text);
-                    byte[] file_byte_data = File.ReadAllBytes(file_path);               
+                    byte[] file_byte_data = File.ReadAllBytes(file_path);
                     VigenereCipher vigenere = new VigenereCipher(file_byte_data);
                 }
             }

@@ -14,7 +14,7 @@ namespace Crypto_Project
         public string generateKey()
         {
             StringBuilder res = new StringBuilder();
-            using(RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
+            using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
             {
                 int length = LENGTH;
                 byte[] uintBuffer = new byte[sizeof(uint)];
