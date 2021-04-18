@@ -54,18 +54,10 @@ namespace Crypto_Project
                         if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                         {
                             try
-                            {
-                                if (rbEncrypt.Checked)
-                                {
-                                    File.WriteAllBytes(saveFileDialog1.FileName, outputResult);
-                                    MessageBox.Show("Encryption Successful", "File Encrypted", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                }
-                                else
-                                {
-                                    string textPlainText = Encoding.ASCII.GetString(outputResult);
-                                    File.WriteAllText(saveFileDialog1.FileName, textPlainText);
-                                    MessageBox.Show("Decryption Successful", "File Decrypted", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                                }
+                            { 
+                                File.WriteAllBytes(saveFileDialog1.FileName, outputResult);
+                                MessageBox.Show("Operation Successful", "File created", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                
                             }
                             catch (IOException err)
                             {
