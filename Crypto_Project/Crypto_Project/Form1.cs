@@ -95,5 +95,9 @@ namespace Crypto_Project
            
         }
 
+        private void tcAlgorithms_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtKey.Text = "";
+        }
     }
 }

@@ -56,6 +56,7 @@
             this.tcAlgorithms.SelectedIndex = 0;
             this.tcAlgorithms.Size = new System.Drawing.Size(893, 468);
             this.tcAlgorithms.TabIndex = 0;
+            this.tcAlgorithms.SelectedIndexChanged += new System.EventHandler(this.tcAlgorithms_SelectedIndexChanged);
             // 
             // tpVigenere
             // 
