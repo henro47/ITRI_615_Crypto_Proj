@@ -8,24 +8,45 @@ namespace Crypto_Project
 {
     class VigenereCipher
     {
-        private byte[] inputData;
-        public VigenereCipher(byte [] inputData)
+        public byte[] encryptVigenere(byte[] plainText, string key)
         {
-            this.inputData = new byte[inputData.Length];
-            setData(inputData);
+            byte[] cipherText = new byte[plainText.Length];
+
+            key = key.Trim().ToUpper();
+
+            int keyIndex = 0;
+            int keyLength = key.Length;
+
+            for(int i =0; i <plainText.Length; i++)
+            {
+                keyIndex = keyIndex % keyLength;
+                int shift = (int)key[keyIndex] - 65;
+                cipherText[i] = (byte)(((int)plainText[i] + shift) % 256);
+                keyIndex++;
+            }
+
+            return cipherText;
         }
 
-        private void setData(byte[] inputData)
+        public byte[] decryptVigenere(byte[] cipherText, string key)
         {
- 
-            for(int i = 0; i <inputData.Length; i++)
+            byte[] plainText = new byte[cipherText.Length];
+
+            key = key.Trim().ToUpper();
+
+            int keyIndex = 0;
+            int keyLength = key.Length;
+
+            for(int i = 0; i <cipherText.Length;i++)
             {
-                this.inputData[i] = inputData[i];
-            } 
+                keyIndex = keyIndex % keyLength;
+                int shift = (int)key[keyIndex] - 65;
+                plainText[i] = (byte)(((int)cipherText[i] + 256 - shift) % 256);
+                keyIndex++;
+            }
+
+            return plainText;
         }
-        public byte getDataAtIndex(int index)
-        {
-            return this.inputData[index];
-        }
+
     }
 }

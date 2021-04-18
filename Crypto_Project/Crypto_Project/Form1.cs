@@ -29,20 +29,60 @@ namespace Crypto_Project
         {
             if (txtKey.Text != "")
             {
+                //File (CipherText or PlainText)
+                byte[] inputFile;
+                byte[] outputResult;
                 openFileDialog1.InitialDirectory = @"C:\";
-                if(openFileDialog1.ShowDialog() == DialogResult.OK)
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    file_path = openFileDialog1.FileName;
-                    byte[] key_byte = new KeyGenerator().keyStringToByteArray(txtKey.Text);
-                    byte[] file_byte_data = File.ReadAllBytes(file_path);
-                    VigenereCipher vigenere = new VigenereCipher(file_byte_data);
-                }
+                    try
+                    {
+                        inputFile = File.ReadAllBytes(openFileDialog1.FileName);
+
+                        //Encryption/Decryption
+                        VigenereCipher vigenere = new VigenereCipher();
+                        if (rbEncrypt.Checked)
+                        {
+                            outputResult = vigenere.encryptVigenere(inputFile, txtKey.Text);
+                        }
+                        else
+                        {
+                            outputResult = vigenere.decryptVigenere(inputFile, txtKey.Text);
+                        }
+
+                        saveFileDialog1.InitialDirectory = @"C:\";
+                        if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                        {
+                            try
+                            {
+                                if (rbEncrypt.Checked)
+                                {
+                                    File.WriteAllBytes(saveFileDialog1.FileName, outputResult);
+                                    MessageBox.Show("Encryption Successful", "File Encrypted", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                }
+                                else
+                                {
+                                    string textPlainText = Encoding.ASCII.GetString(outputResult);
+                                    File.WriteAllText(saveFileDialog1.FileName, textPlainText);
+                                    MessageBox.Show("Decryption Successful", "File Decrypted", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                }
+                            }
+                            catch (IOException err)
+                            {
+                                MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                    catch (IOException err)
+                    {
+                        MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }  
             }
             else
             {
                 MessageBox.Show("Please enter or generate key", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-           
         }
 
         private void rbEncrypt_CheckedChanged(object sender, EventArgs e)

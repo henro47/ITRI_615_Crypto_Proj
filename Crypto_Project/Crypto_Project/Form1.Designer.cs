@@ -40,6 +40,7 @@
             this.tpTransposition = new System.Windows.Forms.TabPage();
             this.tpOwnAlgo = new System.Windows.Forms.TabPage();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tcAlgorithms.SuspendLayout();
             this.tpVigenere.SuspendLayout();
             this.SuspendLayout();
@@ -195,6 +196,7 @@
         private System.Windows.Forms.RadioButton rbDecrypt;
         private System.Windows.Forms.RadioButton rbEncrypt;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 
