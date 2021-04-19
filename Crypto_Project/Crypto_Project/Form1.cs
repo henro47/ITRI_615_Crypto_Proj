@@ -13,7 +13,6 @@ namespace Crypto_Project
 {
     public partial class frmMain : Form
     {
-        private string file_path; 
         public frmMain()
         {
             InitializeComponent();
@@ -22,12 +21,12 @@ namespace Crypto_Project
         private void btnGenerateKey_Click(object sender, EventArgs e)
         {
             KeyGenerator keyGen = new KeyGenerator();
-            txtKey.Text = keyGen.generateKey();
+            txtVigKey.Text = keyGen.generateKey();
         }
 
         private void btnUpload_Click(object sender, EventArgs e)
         {
-            if (txtKey.Text != "")
+            if (txtVigKey.Text != "")
             {
                 //File (CipherText or PlainText)
                 byte[] inputFile;
@@ -41,13 +40,13 @@ namespace Crypto_Project
 
                         //Encryption/Decryption
                         VigenereCipher vigenere = new VigenereCipher();
-                        if (rbEncrypt.Checked)
+                        if (rbEncryptVig.Checked)
                         {
-                            outputResult = vigenere.encryptVigenere(inputFile, txtKey.Text);
+                            outputResult = vigenere.encryptVigenere(inputFile, txtVigKey.Text);
                         }
                         else
                         {
-                            outputResult = vigenere.decryptVigenere(inputFile, txtKey.Text);
+                            outputResult = vigenere.decryptVigenere(inputFile, txtVigKey.Text);
                         }
 
                         saveFileDialog1.InitialDirectory = @"C:\";
@@ -79,25 +78,25 @@ namespace Crypto_Project
 
         private void rbEncrypt_CheckedChanged(object sender, EventArgs e)
         {
-            if(rbEncrypt.Checked)
+            if(rbEncryptVig.Checked)
             {
-                rbDecrypt.Checked = false;
+                rbDecryptVig.Checked = false;
             }
         
         }
 
         private void rbDecrypt_CheckedChanged(object sender, EventArgs e)
         {
-            if(rbDecrypt.Checked)
+            if(rbDecryptVig.Checked)
             {
-                rbEncrypt.Checked = false;
+                rbEncryptVig.Checked = false;
             }
            
         }
 
         private void tcAlgorithms_SelectedIndexChanged(object sender, EventArgs e)
         {
-            txtKey.Text = "";
+            txtVigKey.Text = "";
         }
     }
 }

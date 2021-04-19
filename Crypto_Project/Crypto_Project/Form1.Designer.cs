@@ -30,11 +30,11 @@
         {
             this.tcAlgorithms = new System.Windows.Forms.TabControl();
             this.tpVigenere = new System.Windows.Forms.TabPage();
-            this.rbDecrypt = new System.Windows.Forms.RadioButton();
-            this.rbEncrypt = new System.Windows.Forms.RadioButton();
-            this.btnUpload = new System.Windows.Forms.Button();
-            this.btnGenerateKey = new System.Windows.Forms.Button();
-            this.txtKey = new System.Windows.Forms.TextBox();
+            this.rbDecryptVig = new System.Windows.Forms.RadioButton();
+            this.rbEncryptVig = new System.Windows.Forms.RadioButton();
+            this.btnUploadVig = new System.Windows.Forms.Button();
+            this.btnGenerateVigKey = new System.Windows.Forms.Button();
+            this.txtVigKey = new System.Windows.Forms.TextBox();
             this.lblKey = new System.Windows.Forms.Label();
             this.tpVernam = new System.Windows.Forms.TabPage();
             this.tpTransposition = new System.Windows.Forms.TabPage();
@@ -60,11 +60,11 @@
             // 
             // tpVigenere
             // 
-            this.tpVigenere.Controls.Add(this.rbDecrypt);
-            this.tpVigenere.Controls.Add(this.rbEncrypt);
-            this.tpVigenere.Controls.Add(this.btnUpload);
-            this.tpVigenere.Controls.Add(this.btnGenerateKey);
-            this.tpVigenere.Controls.Add(this.txtKey);
+            this.tpVigenere.Controls.Add(this.rbDecryptVig);
+            this.tpVigenere.Controls.Add(this.rbEncryptVig);
+            this.tpVigenere.Controls.Add(this.btnUploadVig);
+            this.tpVigenere.Controls.Add(this.btnGenerateVigKey);
+            this.tpVigenere.Controls.Add(this.txtVigKey);
             this.tpVigenere.Controls.Add(this.lblKey);
             this.tpVigenere.Location = new System.Drawing.Point(4, 25);
             this.tpVigenere.Name = "tpVigenere";
@@ -74,57 +74,57 @@
             this.tpVigenere.Text = "Vigenere";
             this.tpVigenere.UseVisualStyleBackColor = true;
             // 
-            // rbDecrypt
+            // rbDecryptVig
             // 
-            this.rbDecrypt.AutoSize = true;
-            this.rbDecrypt.Location = new System.Drawing.Point(742, 59);
-            this.rbDecrypt.Name = "rbDecrypt";
-            this.rbDecrypt.Size = new System.Drawing.Size(104, 21);
-            this.rbDecrypt.TabIndex = 5;
-            this.rbDecrypt.TabStop = true;
-            this.rbDecrypt.Text = "Decrypt File";
-            this.rbDecrypt.UseVisualStyleBackColor = true;
-            this.rbDecrypt.CheckedChanged += new System.EventHandler(this.rbDecrypt_CheckedChanged);
+            this.rbDecryptVig.AutoSize = true;
+            this.rbDecryptVig.Location = new System.Drawing.Point(742, 59);
+            this.rbDecryptVig.Name = "rbDecryptVig";
+            this.rbDecryptVig.Size = new System.Drawing.Size(104, 21);
+            this.rbDecryptVig.TabIndex = 5;
+            this.rbDecryptVig.TabStop = true;
+            this.rbDecryptVig.Text = "Decrypt File";
+            this.rbDecryptVig.UseVisualStyleBackColor = true;
+            this.rbDecryptVig.CheckedChanged += new System.EventHandler(this.rbDecrypt_CheckedChanged);
             // 
-            // rbEncrypt
+            // rbEncryptVig
             // 
-            this.rbEncrypt.AutoSize = true;
-            this.rbEncrypt.Checked = true;
-            this.rbEncrypt.Location = new System.Drawing.Point(742, 25);
-            this.rbEncrypt.Name = "rbEncrypt";
-            this.rbEncrypt.Size = new System.Drawing.Size(103, 21);
-            this.rbEncrypt.TabIndex = 4;
-            this.rbEncrypt.TabStop = true;
-            this.rbEncrypt.Text = "Encrypt File";
-            this.rbEncrypt.UseVisualStyleBackColor = true;
-            this.rbEncrypt.CheckedChanged += new System.EventHandler(this.rbEncrypt_CheckedChanged);
+            this.rbEncryptVig.AutoSize = true;
+            this.rbEncryptVig.Checked = true;
+            this.rbEncryptVig.Location = new System.Drawing.Point(742, 25);
+            this.rbEncryptVig.Name = "rbEncryptVig";
+            this.rbEncryptVig.Size = new System.Drawing.Size(103, 21);
+            this.rbEncryptVig.TabIndex = 4;
+            this.rbEncryptVig.TabStop = true;
+            this.rbEncryptVig.Text = "Encrypt File";
+            this.rbEncryptVig.UseVisualStyleBackColor = true;
+            this.rbEncryptVig.CheckedChanged += new System.EventHandler(this.rbEncrypt_CheckedChanged);
             // 
-            // btnUpload
+            // btnUploadVig
             // 
-            this.btnUpload.Location = new System.Drawing.Point(30, 135);
-            this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(165, 46);
-            this.btnUpload.TabIndex = 3;
-            this.btnUpload.Text = "Upload File";
-            this.btnUpload.UseVisualStyleBackColor = true;
-            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            this.btnUploadVig.Location = new System.Drawing.Point(30, 135);
+            this.btnUploadVig.Name = "btnUploadVig";
+            this.btnUploadVig.Size = new System.Drawing.Size(165, 46);
+            this.btnUploadVig.TabIndex = 3;
+            this.btnUploadVig.Text = "Upload File";
+            this.btnUploadVig.UseVisualStyleBackColor = true;
+            this.btnUploadVig.Click += new System.EventHandler(this.btnUpload_Click);
             // 
-            // btnGenerateKey
+            // btnGenerateVigKey
             // 
-            this.btnGenerateKey.Location = new System.Drawing.Point(30, 59);
-            this.btnGenerateKey.Name = "btnGenerateKey";
-            this.btnGenerateKey.Size = new System.Drawing.Size(295, 44);
-            this.btnGenerateKey.TabIndex = 2;
-            this.btnGenerateKey.Text = "Generate Key";
-            this.btnGenerateKey.UseVisualStyleBackColor = true;
-            this.btnGenerateKey.Click += new System.EventHandler(this.btnGenerateKey_Click);
+            this.btnGenerateVigKey.Location = new System.Drawing.Point(30, 59);
+            this.btnGenerateVigKey.Name = "btnGenerateVigKey";
+            this.btnGenerateVigKey.Size = new System.Drawing.Size(295, 44);
+            this.btnGenerateVigKey.TabIndex = 2;
+            this.btnGenerateVigKey.Text = "Generate Key";
+            this.btnGenerateVigKey.UseVisualStyleBackColor = true;
+            this.btnGenerateVigKey.Click += new System.EventHandler(this.btnGenerateKey_Click);
             // 
-            // txtKey
+            // txtVigKey
             // 
-            this.txtKey.Location = new System.Drawing.Point(140, 26);
-            this.txtKey.Name = "txtKey";
-            this.txtKey.Size = new System.Drawing.Size(178, 22);
-            this.txtKey.TabIndex = 1;
+            this.txtVigKey.Location = new System.Drawing.Point(140, 26);
+            this.txtVigKey.Name = "txtVigKey";
+            this.txtVigKey.Size = new System.Drawing.Size(178, 22);
+            this.txtVigKey.TabIndex = 1;
             // 
             // lblKey
             // 
@@ -187,15 +187,15 @@
 
         private System.Windows.Forms.TabControl tcAlgorithms;
         private System.Windows.Forms.TabPage tpVigenere;
-        private System.Windows.Forms.Button btnGenerateKey;
-        private System.Windows.Forms.TextBox txtKey;
+        private System.Windows.Forms.Button btnGenerateVigKey;
+        private System.Windows.Forms.TextBox txtVigKey;
         private System.Windows.Forms.Label lblKey;
         private System.Windows.Forms.TabPage tpVernam;
         private System.Windows.Forms.TabPage tpTransposition;
         private System.Windows.Forms.TabPage tpOwnAlgo;
-        private System.Windows.Forms.Button btnUpload;
-        private System.Windows.Forms.RadioButton rbDecrypt;
-        private System.Windows.Forms.RadioButton rbEncrypt;
+        private System.Windows.Forms.Button btnUploadVig;
+        private System.Windows.Forms.RadioButton rbDecryptVig;
+        private System.Windows.Forms.RadioButton rbEncryptVig;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
