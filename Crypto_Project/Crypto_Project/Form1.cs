@@ -21,39 +21,82 @@ namespace Crypto_Project
         private void btnGenerateKey_Click(object sender, EventArgs e)
         {
             KeyGenerator keyGen = new KeyGenerator();
-            txtKey.Text = keyGen.generateKey();
+            txtVigKey.Text = keyGen.generateKey();
         }
 
         private void btnUpload_Click(object sender, EventArgs e)
         {
-            if (txtKey.Text != "")
+            if (txtVigKey.Text != "")
             {
+                //File (CipherText or PlainText)
+                byte[] inputFile;
+                byte[] outputResult;
+                openFileDialog1.InitialDirectory = @"C:\";
+                if (openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        inputFile = File.ReadAllBytes(openFileDialog1.FileName);
 
+                        //Encryption/Decryption
+                        VigenereCipher vigenere = new VigenereCipher();
+                        if (rbEncryptVig.Checked)
+                        {
+                            outputResult = vigenere.encryptVigenere(inputFile, txtVigKey.Text);
+                        }
+                        else
+                        {
+                            outputResult = vigenere.decryptVigenere(inputFile, txtVigKey.Text);
+                        }
+
+                        saveFileDialog1.InitialDirectory = @"C:\";
+                        if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                        {
+                            try
+                            { 
+                                File.WriteAllBytes(saveFileDialog1.FileName, outputResult);
+                                MessageBox.Show("Operation Successful", "File created", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                
+                            }
+                            catch (IOException err)
+                            {
+                                MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                    catch (IOException err)
+                    {
+                        MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }  
             }
             else
             {
                 MessageBox.Show("Please enter or generate key", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-           
         }
 
         private void rbEncrypt_CheckedChanged(object sender, EventArgs e)
         {
-            if(rbEncrypt.Checked)
+            if(rbEncryptVig.Checked)
             {
-                rbDecrypt.Checked = false;
+                rbDecryptVig.Checked = false;
             }
         
         }
 
         private void rbDecrypt_CheckedChanged(object sender, EventArgs e)
         {
-            if(rbDecrypt.Checked)
+            if(rbDecryptVig.Checked)
             {
-                rbEncrypt.Checked = false;
+                rbEncryptVig.Checked = false;
             }
            
         }
 
+        private void tcAlgorithms_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            txtVigKey.Text = "";
+        }
     }
 }

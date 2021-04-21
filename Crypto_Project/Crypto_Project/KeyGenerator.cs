@@ -14,7 +14,7 @@ namespace Crypto_Project
         public string generateKey()
         {
             StringBuilder res = new StringBuilder();
-            using(RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
+            using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
             {
                 int length = LENGTH;
                 byte[] uintBuffer = new byte[sizeof(uint)];
@@ -26,6 +26,11 @@ namespace Crypto_Project
                 }
             }
             return res.ToString();
+        }
+
+        public byte[] keyStringToByteArray(string key)
+        {
+            return Encoding.ASCII.GetBytes(key);
         }
 
     }
