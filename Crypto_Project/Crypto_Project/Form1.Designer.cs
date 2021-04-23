@@ -40,8 +40,6 @@
             this.btnVerUpload = new System.Windows.Forms.Button();
             this.rbVerDecrypt = new System.Windows.Forms.RadioButton();
             this.rbVerEncrypt = new System.Windows.Forms.RadioButton();
-            this.txtVerKey = new System.Windows.Forms.TextBox();
-            this.lblVerEncrypt = new System.Windows.Forms.Label();
             this.tpTransposition = new System.Windows.Forms.TabPage();
             this.tpOwnAlgo = new System.Windows.Forms.TabPage();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
@@ -146,8 +144,6 @@
             this.tpVernam.Controls.Add(this.btnVerUpload);
             this.tpVernam.Controls.Add(this.rbVerDecrypt);
             this.tpVernam.Controls.Add(this.rbVerEncrypt);
-            this.tpVernam.Controls.Add(this.txtVerKey);
-            this.tpVernam.Controls.Add(this.lblVerEncrypt);
             this.tpVernam.Location = new System.Drawing.Point(4, 25);
             this.tpVernam.Name = "tpVernam";
             this.tpVernam.Padding = new System.Windows.Forms.Padding(3);
@@ -158,7 +154,7 @@
             // 
             // btnVerUpload
             // 
-            this.btnVerUpload.Location = new System.Drawing.Point(28, 83);
+            this.btnVerUpload.Location = new System.Drawing.Point(28, 139);
             this.btnVerUpload.Name = "btnVerUpload";
             this.btnVerUpload.Size = new System.Drawing.Size(165, 46);
             this.btnVerUpload.TabIndex = 7;
@@ -190,23 +186,6 @@
             this.rbVerEncrypt.Text = "Encrypt File";
             this.rbVerEncrypt.UseVisualStyleBackColor = true;
             this.rbVerEncrypt.CheckedChanged += new System.EventHandler(this.rbVerEncrypt_CheckedChanged);
-            // 
-            // txtVerKey
-            // 
-            this.txtVerKey.Enabled = false;
-            this.txtVerKey.Location = new System.Drawing.Point(138, 26);
-            this.txtVerKey.Name = "txtVerKey";
-            this.txtVerKey.Size = new System.Drawing.Size(178, 22);
-            this.txtVerKey.TabIndex = 2;
-            // 
-            // lblVerEncrypt
-            // 
-            this.lblVerEncrypt.AutoSize = true;
-            this.lblVerEncrypt.Location = new System.Drawing.Point(25, 29);
-            this.lblVerEncrypt.Name = "lblVerEncrypt";
-            this.lblVerEncrypt.Size = new System.Drawing.Size(107, 17);
-            this.lblVerEncrypt.TabIndex = 1;
-            this.lblVerEncrypt.Text = "Encryption Key:";
             // 
             // tpTransposition
             // 
@@ -266,8 +245,6 @@
         private System.Windows.Forms.Button btnVerUpload;
         private System.Windows.Forms.RadioButton rbVerDecrypt;
         private System.Windows.Forms.RadioButton rbVerEncrypt;
-        private System.Windows.Forms.TextBox txtVerKey;
-        private System.Windows.Forms.Label lblVerEncrypt;
     }
 }
 
