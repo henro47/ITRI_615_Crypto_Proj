@@ -11,6 +11,7 @@ namespace Crypto_Project
     {
         private const string VALID = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         private const int LENGTH = 15;
+        /*
         public string generateKey()
         {
             StringBuilder res = new StringBuilder();
@@ -27,19 +28,30 @@ namespace Crypto_Project
             }
             return res.ToString();
         }
+        */
 
-        public string generateSingleChar()
+        public string generateKey()
         {
-            StringBuilder res = new StringBuilder();
+            string key = "";
             using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
             {
-                int length = 1;
-                byte[] uintBuffer = new byte[sizeof(uint)];
-                rng.GetBytes(uintBuffer);
-                uint num = BitConverter.ToUInt32(uintBuffer, 0);
-                res.Append(VALID[(int)(num % (uint)VALID.Length)]);
+                byte[] randomBytes = new byte[LENGTH];
+                rng.GetBytes(randomBytes);
+                key = Convert.ToBase64String(randomBytes);
             }
-            return res.ToString();
+            return key;
+        }
+
+        public string generateKey(int length)
+        {
+            string key = "";
+            using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
+            {
+                byte[] randomBytes = new byte[length];
+                rng.GetBytes(randomBytes);
+                key = Convert.ToBase64String(randomBytes);
+            }
+            return key;
         }
     }
 }

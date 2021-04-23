@@ -117,8 +117,7 @@ namespace Crypto_Project
 
         private void btnVerGenKey_Click(object sender, EventArgs e)
         {
-            KeyGenerator generator = new KeyGenerator();
-            txtVerKey.Text = generator.generateSingleChar();
+            KeyGenerator generator = new KeyGenerator();           
             
         }
     }
