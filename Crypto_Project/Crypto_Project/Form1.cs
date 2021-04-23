@@ -21,7 +21,7 @@ namespace Crypto_Project
         private void btnGenerateKey_Click(object sender, EventArgs e)
         {
             KeyGenerator keyGen = new KeyGenerator();
-            txtVigKey.Text = keyGen.generateKey();
+            txtVigKey.Text = Convert.ToBase64String(keyGen.generateKey());
         }
 
         private void btnUpload_Click(object sender, EventArgs e)
@@ -98,5 +98,109 @@ namespace Crypto_Project
         {
             txtVigKey.Text = "";
         }
+
+        private void rbVerEncrypt_CheckedChanged(object sender, EventArgs e)
+        {
+            if(rbVerEncrypt.Checked)
+            {
+                rbVerDecrypt.Checked = false;
+            }
+        }
+
+        private void rbVerDecrypt_CheckedChanged(object sender, EventArgs e)
+        {
+            if(rbVerDecrypt.Checked)
+            {
+                rbVerEncrypt.Checked = false;
+            }
+        }
+
+        private void btnVerUpload_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                byte[] inputFile;
+                byte[] outputFile;
+                byte[] key;
+
+                openFileDialog1.InitialDirectory = @"C:\";
+                openFileDialog1.Title = "Upload any File";
+                if(openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    inputFile = File.ReadAllBytes(openFileDialog1.FileName);
+                    if(rbVerEncrypt.Checked)
+                    {
+                        KeyGenerator generator = new KeyGenerator();
+                        key = generator.generateKey(inputFile.Length);
+                        VernamCipher vernam = new VernamCipher();
+                        outputFile = vernam.executeVernam(inputFile, key);
+                        vernamFileSaveEncrypt(outputFile, key);
+                    }
+                    else
+                    {
+                        openFileDialog1.InitialDirectory = @"C:\";
+                        openFileDialog1.Title = "Upload Encryption/Decryption Key";
+                        if(openFileDialog1.ShowDialog() == DialogResult.OK)
+                        {
+                            key = File.ReadAllBytes(openFileDialog1.FileName);
+                            VernamCipher vernam = new VernamCipher();
+                            outputFile = vernam.executeVernam(inputFile, key);
+                            vernamFileSaveDecrypt(outputFile);
+                        }
+                    }        
+                }
+            }
+            catch(IOException err)
+            {
+                MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+    
+        }
+
+        private bool vernamFileSaveEncrypt(byte[] file, byte[] key)
+        {
+            bool isSuccessful = false;
+            saveFileDialog1.InitialDirectory = @"C:\";
+            saveFileDialog1.Title = "Save Encrypted File and Key";
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    File.WriteAllBytes(saveFileDialog1.FileName, file);
+                    File.WriteAllBytes(saveFileDialog1.FileName+ "_key.dat", key);
+                    MessageBox.Show("Operation Successful", "File created and key written to file.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    isSuccessful = true;
+                }
+                catch (IOException err)
+                {
+                    MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+    
+                }        
+            }
+            return isSuccessful;
+        }
+
+        private bool vernamFileSaveDecrypt(byte[] file)
+        {
+            bool isSuccessful = false;
+            saveFileDialog1.InitialDirectory = @"C:\";
+            saveFileDialog1.Title = "Save Decrypted File";
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    File.WriteAllBytes(saveFileDialog1.FileName, file);
+                    MessageBox.Show("Operation Successful", "File created", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    isSuccessful = true;
+                }
+                catch (IOException err)
+                {
+                    MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+            }
+            return isSuccessful;
+        }
+
     }
 }

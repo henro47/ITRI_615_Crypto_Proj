@@ -37,12 +37,16 @@
             this.txtVigKey = new System.Windows.Forms.TextBox();
             this.lblKey = new System.Windows.Forms.Label();
             this.tpVernam = new System.Windows.Forms.TabPage();
+            this.btnVerUpload = new System.Windows.Forms.Button();
+            this.rbVerDecrypt = new System.Windows.Forms.RadioButton();
+            this.rbVerEncrypt = new System.Windows.Forms.RadioButton();
             this.tpTransposition = new System.Windows.Forms.TabPage();
             this.tpOwnAlgo = new System.Windows.Forms.TabPage();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.tcAlgorithms.SuspendLayout();
             this.tpVigenere.SuspendLayout();
+            this.tpVernam.SuspendLayout();
             this.SuspendLayout();
             // 
             // tcAlgorithms
@@ -137,6 +141,9 @@
             // 
             // tpVernam
             // 
+            this.tpVernam.Controls.Add(this.btnVerUpload);
+            this.tpVernam.Controls.Add(this.rbVerDecrypt);
+            this.tpVernam.Controls.Add(this.rbVerEncrypt);
             this.tpVernam.Location = new System.Drawing.Point(4, 25);
             this.tpVernam.Name = "tpVernam";
             this.tpVernam.Padding = new System.Windows.Forms.Padding(3);
@@ -144,6 +151,41 @@
             this.tpVernam.TabIndex = 1;
             this.tpVernam.Text = "Vernam";
             this.tpVernam.UseVisualStyleBackColor = true;
+            // 
+            // btnVerUpload
+            // 
+            this.btnVerUpload.Location = new System.Drawing.Point(28, 139);
+            this.btnVerUpload.Name = "btnVerUpload";
+            this.btnVerUpload.Size = new System.Drawing.Size(165, 46);
+            this.btnVerUpload.TabIndex = 7;
+            this.btnVerUpload.Text = "Upload File";
+            this.btnVerUpload.UseVisualStyleBackColor = true;
+            this.btnVerUpload.Click += new System.EventHandler(this.btnVerUpload_Click);
+            // 
+            // rbVerDecrypt
+            // 
+            this.rbVerDecrypt.AutoSize = true;
+            this.rbVerDecrypt.Location = new System.Drawing.Point(756, 56);
+            this.rbVerDecrypt.Name = "rbVerDecrypt";
+            this.rbVerDecrypt.Size = new System.Drawing.Size(104, 21);
+            this.rbVerDecrypt.TabIndex = 6;
+            this.rbVerDecrypt.TabStop = true;
+            this.rbVerDecrypt.Text = "Decrypt File";
+            this.rbVerDecrypt.UseVisualStyleBackColor = true;
+            this.rbVerDecrypt.CheckedChanged += new System.EventHandler(this.rbVerDecrypt_CheckedChanged);
+            // 
+            // rbVerEncrypt
+            // 
+            this.rbVerEncrypt.AutoSize = true;
+            this.rbVerEncrypt.Checked = true;
+            this.rbVerEncrypt.Location = new System.Drawing.Point(757, 29);
+            this.rbVerEncrypt.Name = "rbVerEncrypt";
+            this.rbVerEncrypt.Size = new System.Drawing.Size(103, 21);
+            this.rbVerEncrypt.TabIndex = 5;
+            this.rbVerEncrypt.TabStop = true;
+            this.rbVerEncrypt.Text = "Encrypt File";
+            this.rbVerEncrypt.UseVisualStyleBackColor = true;
+            this.rbVerEncrypt.CheckedChanged += new System.EventHandler(this.rbVerEncrypt_CheckedChanged);
             // 
             // tpTransposition
             // 
@@ -179,6 +221,8 @@
             this.tcAlgorithms.ResumeLayout(false);
             this.tpVigenere.ResumeLayout(false);
             this.tpVigenere.PerformLayout();
+            this.tpVernam.ResumeLayout(false);
+            this.tpVernam.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -198,6 +242,9 @@
         private System.Windows.Forms.RadioButton rbEncryptVig;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Button btnVerUpload;
+        private System.Windows.Forms.RadioButton rbVerDecrypt;
+        private System.Windows.Forms.RadioButton rbVerEncrypt;
     }
 }
 
