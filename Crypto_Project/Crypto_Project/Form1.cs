@@ -114,5 +114,12 @@ namespace Crypto_Project
                 rbVerEncrypt.Checked = false;
             }
         }
+
+        private void btnVerGenKey_Click(object sender, EventArgs e)
+        {
+            KeyGenerator generator = new KeyGenerator();
+            txtVerKey.Text = generator.generateSingleChar();
+            
+        }
     }
 }

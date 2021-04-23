@@ -28,10 +28,18 @@ namespace Crypto_Project
             return res.ToString();
         }
 
-        public byte[] keyStringToByteArray(string key)
+        public string generateSingleChar()
         {
-            return Encoding.ASCII.GetBytes(key);
+            StringBuilder res = new StringBuilder();
+            using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
+            {
+                int length = 1;
+                byte[] uintBuffer = new byte[sizeof(uint)];
+                rng.GetBytes(uintBuffer);
+                uint num = BitConverter.ToUInt32(uintBuffer, 0);
+                res.Append(VALID[(int)(num % (uint)VALID.Length)]);
+            }
+            return res.ToString();
         }
-
     }
 }

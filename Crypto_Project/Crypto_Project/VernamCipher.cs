@@ -24,7 +24,18 @@ namespace Crypto_Project
 
             return outputBytes;
         }
-    }
 
-   
+        public byte[] extendKeyToTextLength(string key, int fileLength)
+        {
+            int count = 0;
+            KeyGenerator generator = new KeyGenerator();
+            while(count < fileLength )
+            {
+                key += generator.generateSingleChar();
+                count++;
+            }
+
+            return Encoding.ASCII.GetBytes(key);
+        }
+    }
 }
