@@ -124,6 +124,7 @@ namespace Crypto_Project
                 byte[] key;
 
                 openFileDialog1.InitialDirectory = @"C:\";
+                openFileDialog1.Title = "Upload any File";
                 if(openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     inputFile = File.ReadAllBytes(openFileDialog1.FileName);
@@ -138,6 +139,7 @@ namespace Crypto_Project
                     else
                     {
                         openFileDialog1.InitialDirectory = @"C:\";
+                        openFileDialog1.Title = "Upload Encryption/Decryption Key";
                         if(openFileDialog1.ShowDialog() == DialogResult.OK)
                         {
                             key = File.ReadAllBytes(openFileDialog1.FileName);
@@ -159,13 +161,14 @@ namespace Crypto_Project
         {
             bool isSuccessful = false;
             saveFileDialog1.InitialDirectory = @"C:\";
+            saveFileDialog1.Title = "Save Encrypted File and Key";
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 try
                 {
                     File.WriteAllBytes(saveFileDialog1.FileName, file);
-                    File.WriteAllBytes("key.dat", key);
-                    MessageBox.Show("Operation Successful", "File created", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                    File.WriteAllBytes(saveFileDialog1.FileName+ "_key.dat", key);
+                    MessageBox.Show("Operation Successful", "File created and key written to file.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     isSuccessful = true;
                 }
                 catch (IOException err)
@@ -181,6 +184,7 @@ namespace Crypto_Project
         {
             bool isSuccessful = false;
             saveFileDialog1.InitialDirectory = @"C:\";
+            saveFileDialog1.Title = "Save Decrypted File";
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 try
