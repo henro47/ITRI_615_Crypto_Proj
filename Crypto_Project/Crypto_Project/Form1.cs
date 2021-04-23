@@ -98,5 +98,21 @@ namespace Crypto_Project
         {
             txtVigKey.Text = "";
         }
+
+        private void rbVerEncrypt_CheckedChanged(object sender, EventArgs e)
+        {
+            if(rbVerEncrypt.Checked)
+            {
+                rbVerDecrypt.Checked = false;
+            }
+        }
+
+        private void rbVerDecrypt_CheckedChanged(object sender, EventArgs e)
+        {
+            if(rbVerDecrypt.Checked)
+            {
+                rbVerEncrypt.Checked = false;
+            }
+        }
     }
 }

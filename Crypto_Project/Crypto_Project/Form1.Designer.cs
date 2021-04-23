@@ -41,8 +41,15 @@
             this.tpOwnAlgo = new System.Windows.Forms.TabPage();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.lblVerEncrypt = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.btnVerGenKey = new System.Windows.Forms.Button();
+            this.rbVerEncrypt = new System.Windows.Forms.RadioButton();
+            this.rbVerDecrypt = new System.Windows.Forms.RadioButton();
+            this.btnVerUpload = new System.Windows.Forms.Button();
             this.tcAlgorithms.SuspendLayout();
             this.tpVigenere.SuspendLayout();
+            this.tpVernam.SuspendLayout();
             this.SuspendLayout();
             // 
             // tcAlgorithms
@@ -137,6 +144,12 @@
             // 
             // tpVernam
             // 
+            this.tpVernam.Controls.Add(this.btnVerUpload);
+            this.tpVernam.Controls.Add(this.rbVerDecrypt);
+            this.tpVernam.Controls.Add(this.rbVerEncrypt);
+            this.tpVernam.Controls.Add(this.btnVerGenKey);
+            this.tpVernam.Controls.Add(this.textBox1);
+            this.tpVernam.Controls.Add(this.lblVerEncrypt);
             this.tpVernam.Location = new System.Drawing.Point(4, 25);
             this.tpVernam.Name = "tpVernam";
             this.tpVernam.Padding = new System.Windows.Forms.Padding(3);
@@ -167,6 +180,65 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // lblVerEncrypt
+            // 
+            this.lblVerEncrypt.AutoSize = true;
+            this.lblVerEncrypt.Location = new System.Drawing.Point(25, 29);
+            this.lblVerEncrypt.Name = "lblVerEncrypt";
+            this.lblVerEncrypt.Size = new System.Drawing.Size(107, 17);
+            this.lblVerEncrypt.TabIndex = 1;
+            this.lblVerEncrypt.Text = "Encryption Key:";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(138, 26);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(178, 22);
+            this.textBox1.TabIndex = 2;
+            // 
+            // btnVerGenKey
+            // 
+            this.btnVerGenKey.Location = new System.Drawing.Point(21, 65);
+            this.btnVerGenKey.Name = "btnVerGenKey";
+            this.btnVerGenKey.Size = new System.Drawing.Size(295, 44);
+            this.btnVerGenKey.TabIndex = 3;
+            this.btnVerGenKey.Text = "Generate Key";
+            this.btnVerGenKey.UseVisualStyleBackColor = true;
+            // 
+            // rbVerEncrypt
+            // 
+            this.rbVerEncrypt.AutoSize = true;
+            this.rbVerEncrypt.Checked = true;
+            this.rbVerEncrypt.Location = new System.Drawing.Point(757, 29);
+            this.rbVerEncrypt.Name = "rbVerEncrypt";
+            this.rbVerEncrypt.Size = new System.Drawing.Size(103, 21);
+            this.rbVerEncrypt.TabIndex = 5;
+            this.rbVerEncrypt.TabStop = true;
+            this.rbVerEncrypt.Text = "Encrypt File";
+            this.rbVerEncrypt.UseVisualStyleBackColor = true;
+            this.rbVerEncrypt.CheckedChanged += new System.EventHandler(this.rbVerEncrypt_CheckedChanged);
+            // 
+            // rbVerDecrypt
+            // 
+            this.rbVerDecrypt.AutoSize = true;
+            this.rbVerDecrypt.Location = new System.Drawing.Point(756, 56);
+            this.rbVerDecrypt.Name = "rbVerDecrypt";
+            this.rbVerDecrypt.Size = new System.Drawing.Size(104, 21);
+            this.rbVerDecrypt.TabIndex = 6;
+            this.rbVerDecrypt.TabStop = true;
+            this.rbVerDecrypt.Text = "Decrypt File";
+            this.rbVerDecrypt.UseVisualStyleBackColor = true;
+            this.rbVerDecrypt.CheckedChanged += new System.EventHandler(this.rbVerDecrypt_CheckedChanged);
+            // 
+            // btnVerUpload
+            // 
+            this.btnVerUpload.Location = new System.Drawing.Point(21, 179);
+            this.btnVerUpload.Name = "btnVerUpload";
+            this.btnVerUpload.Size = new System.Drawing.Size(165, 46);
+            this.btnVerUpload.TabIndex = 7;
+            this.btnVerUpload.Text = "Upload File";
+            this.btnVerUpload.UseVisualStyleBackColor = true;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -179,6 +251,8 @@
             this.tcAlgorithms.ResumeLayout(false);
             this.tpVigenere.ResumeLayout(false);
             this.tpVigenere.PerformLayout();
+            this.tpVernam.ResumeLayout(false);
+            this.tpVernam.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -198,6 +272,12 @@
         private System.Windows.Forms.RadioButton rbEncryptVig;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.SaveFileDialog saveFileDialog1;
+        private System.Windows.Forms.Button btnVerUpload;
+        private System.Windows.Forms.RadioButton rbVerDecrypt;
+        private System.Windows.Forms.RadioButton rbVerEncrypt;
+        private System.Windows.Forms.Button btnVerGenKey;
+        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label lblVerEncrypt;
     }
 }
 
