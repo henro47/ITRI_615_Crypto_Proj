@@ -29,29 +29,26 @@ namespace Crypto_Project
             return res.ToString();
         }
         */
-
-        public string generateKey()
+        //key = Convert.ToBase64String(randomBytes);
+        public byte[] generateKey()
         {
             string key = "";
             using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
             {
                 byte[] randomBytes = new byte[LENGTH];
                 rng.GetBytes(randomBytes);
-                key = Convert.ToBase64String(randomBytes);
+                return randomBytes;
             }
-            return key;
         }
 
-        public string generateKey(int length)
+        public byte[] generateKey(int length)
         {
-            string key = "";
             using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
             {
                 byte[] randomBytes = new byte[length];
                 rng.GetBytes(randomBytes);
-                key = Convert.ToBase64String(randomBytes);
+                return randomBytes;
             }
-            return key;
         }
     }
 }

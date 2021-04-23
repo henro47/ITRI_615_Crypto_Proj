@@ -21,7 +21,7 @@ namespace Crypto_Project
         private void btnGenerateKey_Click(object sender, EventArgs e)
         {
             KeyGenerator keyGen = new KeyGenerator();
-            txtVigKey.Text = keyGen.generateKey();
+            txtVigKey.Text = Convert.ToBase64String(keyGen.generateKey());
         }
 
         private void btnUpload_Click(object sender, EventArgs e)
@@ -115,10 +115,13 @@ namespace Crypto_Project
             }
         }
 
-        private void btnVerGenKey_Click(object sender, EventArgs e)
+        private void btnVerUpload_Click(object sender, EventArgs e)
         {
-            KeyGenerator generator = new KeyGenerator();           
-            
+
+            if(txtVerKey.Text.Length == 0)
+            {
+
+            }
         }
     }
 }

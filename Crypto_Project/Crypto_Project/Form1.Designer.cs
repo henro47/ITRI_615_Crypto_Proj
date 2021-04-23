@@ -40,7 +40,6 @@
             this.btnVerUpload = new System.Windows.Forms.Button();
             this.rbVerDecrypt = new System.Windows.Forms.RadioButton();
             this.rbVerEncrypt = new System.Windows.Forms.RadioButton();
-            this.btnVerGenKey = new System.Windows.Forms.Button();
             this.txtVerKey = new System.Windows.Forms.TextBox();
             this.lblVerEncrypt = new System.Windows.Forms.Label();
             this.tpTransposition = new System.Windows.Forms.TabPage();
@@ -147,7 +146,6 @@
             this.tpVernam.Controls.Add(this.btnVerUpload);
             this.tpVernam.Controls.Add(this.rbVerDecrypt);
             this.tpVernam.Controls.Add(this.rbVerEncrypt);
-            this.tpVernam.Controls.Add(this.btnVerGenKey);
             this.tpVernam.Controls.Add(this.txtVerKey);
             this.tpVernam.Controls.Add(this.lblVerEncrypt);
             this.tpVernam.Location = new System.Drawing.Point(4, 25);
@@ -160,12 +158,13 @@
             // 
             // btnVerUpload
             // 
-            this.btnVerUpload.Location = new System.Drawing.Point(21, 179);
+            this.btnVerUpload.Location = new System.Drawing.Point(28, 83);
             this.btnVerUpload.Name = "btnVerUpload";
             this.btnVerUpload.Size = new System.Drawing.Size(165, 46);
             this.btnVerUpload.TabIndex = 7;
             this.btnVerUpload.Text = "Upload File";
             this.btnVerUpload.UseVisualStyleBackColor = true;
+            this.btnVerUpload.Click += new System.EventHandler(this.btnVerUpload_Click);
             // 
             // rbVerDecrypt
             // 
@@ -192,18 +191,9 @@
             this.rbVerEncrypt.UseVisualStyleBackColor = true;
             this.rbVerEncrypt.CheckedChanged += new System.EventHandler(this.rbVerEncrypt_CheckedChanged);
             // 
-            // btnVerGenKey
-            // 
-            this.btnVerGenKey.Location = new System.Drawing.Point(21, 65);
-            this.btnVerGenKey.Name = "btnVerGenKey";
-            this.btnVerGenKey.Size = new System.Drawing.Size(295, 44);
-            this.btnVerGenKey.TabIndex = 3;
-            this.btnVerGenKey.Text = "Generate Key";
-            this.btnVerGenKey.UseVisualStyleBackColor = true;
-            this.btnVerGenKey.Click += new System.EventHandler(this.btnVerGenKey_Click);
-            // 
             // txtVerKey
             // 
+            this.txtVerKey.Enabled = false;
             this.txtVerKey.Location = new System.Drawing.Point(138, 26);
             this.txtVerKey.Name = "txtVerKey";
             this.txtVerKey.Size = new System.Drawing.Size(178, 22);
@@ -276,7 +266,6 @@
         private System.Windows.Forms.Button btnVerUpload;
         private System.Windows.Forms.RadioButton rbVerDecrypt;
         private System.Windows.Forms.RadioButton rbVerEncrypt;
-        private System.Windows.Forms.Button btnVerGenKey;
         private System.Windows.Forms.TextBox txtVerKey;
         private System.Windows.Forms.Label lblVerEncrypt;
     }
