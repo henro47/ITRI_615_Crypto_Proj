@@ -221,18 +221,60 @@ namespace Crypto_Project
         private void btnOAGenKey_Click(object sender, EventArgs e)
         {
             KeyGenerator generator = new KeyGenerator();
-            txtOAKey.Text = Convert.ToBase64String(generator.generateKey());
+            txtOAKey.Text = Convert.ToBase64String(generator.generateKey(10));
         }
 
         private void btnUpload_Click_1(object sender, EventArgs e)
         {
             if (txtOAKey.Text != "")
             {
+                byte[] outputFile;
+                byte[] key;
 
+                if(rbOAEncrypt.Checked)
+                {
+                    openFileDialog1.InitialDirectory = @"C:\";
+                    openFileDialog1.Title = "Upload any File";
+                    if(openFileDialog1.ShowDialog() == DialogResult.OK)
+                    {
+                        key = Encoding.UTF8.GetBytes(txtOAKey.Text);
+                        AESHorcrux aes = new AESHorcrux();
+                        outputFile = aes.encryptFile(openFileDialog1.FileName, key);     
+                        if(AESHorcruxSavefile(outputFile)&&outputFile!=null)
+                        {
+                            MessageBox.Show("Operation Successful", "File created", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
+                }
+                else
+                {
+
+                }
             }
             else
             {
                 MessageBox.Show("Please enter or generate key", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private bool AESHorcruxSavefile(byte[] file)
+        {
+            try
+            {
+                saveFileDialog1.InitialDirectory = @"C:\";
+                saveFileDialog1.Title = "Save file(s)";
+                
+                if(saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    File.WriteAllBytes(saveFileDialog1.FileName, file);
+                    return true;
+                }
+                return false;
+            }
+            catch(IOException err)
+            {
+                MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
             }
         }
     }

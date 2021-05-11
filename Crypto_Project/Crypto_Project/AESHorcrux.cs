@@ -12,31 +12,26 @@ namespace Crypto_Project
     {
         public byte[] encryptFile(string inputFile, byte[] key)
         {
-            try
+
+            byte[] input = File.ReadAllBytes(inputFile);
+
+            using (var AesService = new AesCryptoServiceProvider())
             {
-                byte[] input = File.ReadAllBytes(inputFile);
+                AesService.IV = key;
+                AesService.Key = key;
+                AesService.Mode = CipherMode.CBC;
+                AesService.Padding = PaddingMode.PKCS7;
 
-                using(var AesService = new AesCryptoServiceProvider())
+                using (var memStream = new MemoryStream())
                 {
-                    AesService.IV = key;
-                    AesService.Key = key;
-                    AesService.Mode = CipherMode.CBC;
-                    AesService.Padding = PaddingMode.PKCS7;
+                    CryptoStream cryptoStream = new CryptoStream(memStream, AesService.CreateEncryptor(), CryptoStreamMode.Write);
+                    cryptoStream.Write(input, 0, input.Length);
+                    cryptoStream.FlushFinalBlock();
 
-                    using(var memStream = new MemoryStream())
-                    {
-                        CryptoStream cryptoStream = new CryptoStream(memStream, AesService.CreateEncryptor(), CryptoStreamMode.Write);
-                        cryptoStream.Write(input, 0, input.Length);
-                        cryptoStream.FlushFinalBlock();
-
-                        return memStream.ToArray();
-                    }
+                    return memStream.ToArray();
                 }
             }
-            catch
-            {
-                return null;
-            }
+
         }
 
         public byte[] decryptFile(string inputFile, byte[] key)
