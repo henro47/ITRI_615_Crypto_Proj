@@ -241,8 +241,7 @@ namespace Crypto_Project
                         AESHorcrux aes = new AESHorcrux();
                         outputFile = aes.encryptFile(openFileDialog1.FileName, key);
                         byte[][] outFiles = aes.splitEncrytedFile(outputFile);
-                        //Write all seven files
-                        if(AESHorcruxSavefile(outputFile)&&outputFile!=null)
+                        if(AESHorcruxSavefile(outFiles)&&outputFile!=null)
                         {
                             MessageBox.Show("Operation Successful", "File created", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         }
@@ -259,7 +258,7 @@ namespace Crypto_Project
             }
         }
 
-        private bool AESHorcruxSavefile(byte[] file)
+        private bool AESHorcruxSavefile(byte[][] files)
         {
             try
             {
@@ -268,7 +267,10 @@ namespace Crypto_Project
                 
                 if(saveFileDialog1.ShowDialog() == DialogResult.OK)
                 {
-                    File.WriteAllBytes(saveFileDialog1.FileName, file);
+                    for(int i=0;i<7;i++)
+                    {
+                        File.WriteAllBytes(saveFileDialog1.FileName + "_Part" + (i + 1),files[i]);
+                    }
                     return true;
                 }
                 return false;

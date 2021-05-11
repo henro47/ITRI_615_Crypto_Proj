@@ -91,5 +91,18 @@ namespace Crypto_Project
                 return null;
             }
         }
+
+        public byte[] combineEncryptedFiles(byte[][] files)
+        {
+            try
+            {
+                byte[] finalFile = files.SelectMany(i => i).ToArray();
+                return finalFile;
+            }
+            catch
+            {
+                return null;
+            }
+        }
     }
 }
