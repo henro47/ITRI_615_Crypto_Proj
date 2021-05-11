@@ -239,7 +239,9 @@ namespace Crypto_Project
                     {
                         key = Encoding.UTF8.GetBytes(txtOAKey.Text);
                         AESHorcrux aes = new AESHorcrux();
-                        outputFile = aes.encryptFile(openFileDialog1.FileName, key);     
+                        outputFile = aes.encryptFile(openFileDialog1.FileName, key);
+                        byte[][] outFiles = aes.splitEncrytedFile(outputFile);
+                        //Write all seven files
                         if(AESHorcruxSavefile(outputFile)&&outputFile!=null)
                         {
                             MessageBox.Show("Operation Successful", "File created", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
