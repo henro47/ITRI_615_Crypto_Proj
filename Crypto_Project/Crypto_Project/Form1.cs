@@ -202,5 +202,38 @@ namespace Crypto_Project
             return isSuccessful;
         }
 
+        private void rbOAEncrypt_CheckedChanged(object sender, EventArgs e)
+        {
+            if(rbOADecrypt.Checked)
+            {
+                rbOAEncrypt.Checked = false;
+            }
+        }
+
+        private void rbOADecrypt_CheckedChanged(object sender, EventArgs e)
+        {
+            if(rbOAEncrypt.Checked)
+            {
+                rbOADecrypt.Checked = false;
+            }
+        }
+
+        private void btnOAGenKey_Click(object sender, EventArgs e)
+        {
+            KeyGenerator generator = new KeyGenerator();
+            txtOAKey.Text = Convert.ToBase64String(generator.generateKey());
+        }
+
+        private void btnUpload_Click_1(object sender, EventArgs e)
+        {
+            if (txtOAKey.Text != "")
+            {
+
+            }
+            else
+            {
+                MessageBox.Show("Please enter or generate key", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }
