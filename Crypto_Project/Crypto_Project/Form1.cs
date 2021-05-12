@@ -240,8 +240,9 @@ namespace Crypto_Project
                         key = Encoding.UTF8.GetBytes(txtOAKey.Text);
                         AESHorcrux aes = new AESHorcrux();
                         outputFile = aes.encryptFile(openFileDialog1.FileName, key);
-                        byte[][] outFiles = aes.splitEncrytedFile(outputFile);
-                        if(AESHorcruxSavefile(outFiles)&&outputFile!=null)
+                        byte[][] outFiles = aes.splitEncrytedFile(outputFile);                                         
+                        
+                        if(AESHorcruxSaveEfiles(outFiles)&& outFiles != null)
                         {
                             MessageBox.Show("Operation Successful", "File created", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         }
@@ -249,7 +250,28 @@ namespace Crypto_Project
                 }
                 else
                 {
+                    openFileDialog1.Multiselect = true;
+                    openFileDialog1.InitialDirectory = @"C:\";
+                    openFileDialog1.Title = "Select the 7 Horcrux files";
+                   
+                    if(openFileDialog1.ShowDialog() == DialogResult.OK)
+                    {
+                        string[] filesNames = openFileDialog1.FileNames.ToArray();
+                        byte[][] inFiles = new byte[filesNames.Length][];
+                        for(int i =0; i<filesNames.Length;i++)
+                        {
+                            inFiles[i] = Encoding.UTF8.GetBytes(filesNames[i]);
+                        }
 
+                        key = Encoding.UTF8.GetBytes(txtOAKey.Text);
+                        AESHorcrux aes = new AESHorcrux();
+                        outputFile = aes.combineEncryptedFiles(inFiles);
+                        outputFile = aes.decryptFile(openFileDialog1.FileName, key);
+                        if (AESHorcruxSaveDfiles(outputFile) && outputFile != null) ;
+                        {
+                            MessageBox.Show("Operation Successful", "File created", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                        }
+                    }
                 }
             }
             else
@@ -258,7 +280,7 @@ namespace Crypto_Project
             }
         }
 
-        private bool AESHorcruxSavefile(byte[][] files)
+        private bool AESHorcruxSaveEfiles(byte[][] files)
         {
             try
             {
@@ -274,6 +296,26 @@ namespace Crypto_Project
                     return true;
                 }
                 return false;
+            }
+            catch(IOException err)
+            {
+                MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        private bool AESHorcruxSaveDfiles(byte[] file)
+        {
+            try
+            {
+                saveFileDialog1.InitialDirectory = @"C:\";
+                saveFileDialog1.Title = "Save any File";
+                if(saveFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    File.WriteAllBytes(saveFileDialog1.FileName, file);
+                   
+                }
+                return true;
             }
             catch(IOException err)
             {
