@@ -10,80 +10,85 @@ namespace Crypto_Project
 {
     class AESHorcrux
     {
-        public byte[] encryptFile(string inputFile, byte[] key)
+        public byte[][] encryptFile(byte[][] inputFiles, byte[] key)
         {
 
             //try
-           //{
-                byte[] input = File.ReadAllBytes(inputFile);
+            //{
+            byte[][] encryptedFiles = new byte[inputFiles.Length][];
+            int count = 0;
+            foreach (byte[] file in inputFiles)
+            {
 
                 using (var AesService = new AesCryptoServiceProvider())
                 {
                     AesService.IV = key;
                     AesService.Key = key;
                     AesService.Mode = CipherMode.CBC;
-                    AesService.Padding = PaddingMode.None;
+                    AesService.Padding = PaddingMode.PKCS7;
 
                     using (var memStream = new MemoryStream())
                     {
                         CryptoStream cryptoStream = new CryptoStream(memStream, AesService.CreateEncryptor(), CryptoStreamMode.Write);
-                        cryptoStream.Write(input, 0, input.Length);
-                        //cryptoStream.FlushFinalBlock();
-
-                        return memStream.ToArray();
+                        cryptoStream.Write(file, 0, file.Length);
+                        cryptoStream.FlushFinalBlock();
+                        encryptedFiles[count] = memStream.ToArray();
+                        count++;
                     }
                 }
-           // }
+            }
+
+            return encryptedFiles;
+            // }
             //catch
             //{
-              //  return null;
-           // }
+            //  return null;
+            // }
 
         }
 
-        public byte[] decryptFile(string inputFile, byte[] key)
+        public byte[][] decryptFile(byte[][] inputFiles, byte[] key)
         {
             //try
             //{
-                byte[] input = File.ReadAllBytes(inputFile);
-
+            byte[][] decryptedFiles = new byte[inputFiles.Length][];
+            int count = 0;
+            foreach (byte[] file in inputFiles)
+            { 
                 using (var AesService = new AesCryptoServiceProvider())
                 {
                     AesService.IV = key;
                     AesService.Key = key;
                     AesService.Mode = CipherMode.CBC;
-                    AesService.Padding = PaddingMode.None;
+                    AesService.Padding = PaddingMode.PKCS7;
 
-                using (var memStream = new MemoryStream())
+                    using (var memStream = new MemoryStream())
                     {
                         CryptoStream cryptoStream = new CryptoStream(memStream, AesService.CreateDecryptor(), CryptoStreamMode.Write);
-                        cryptoStream.Write(input, 0, input.Length);
+                        cryptoStream.Write(file, 0, file.Length);
+                        cryptoStream.FlushFinalBlock();
 
-                        return memStream.ToArray();
+                        decryptedFiles[count] = memStream.ToArray();
+                        count++;
                     }
                 }
+            }
+
+            return decryptedFiles;
             //}
             //catch
-           // {
-               // return null;
+            // {
+            // return null;
             //}
         }
 
-        public byte[][] splitEncrytedFile(byte[] file)
+        public byte[][] splitFiles(byte[] file)
         {
             try
             {
                 int splitSize = file.Length / 7;
-                int finalSplit = 0;              
                 byte[][] horcruxes = new byte[7][];
-                /*horcruxes[0] = file.Take(splitSize).ToArray();
-                int segements = splitSize;
-                for (int i = 1; i < 6; i++)
-                {
-                    horcruxes[i] = file.Skip(segements).Take(splitSize).ToArray();
-                    segements += splitSize;
-                }
-                horcruxes[6] = file.Skip(segements - splitSize).Take(file.Length - segements).ToArray();*/
+
                 int count = 0;
                 int countSize = 0;
                 for (int i = 0; i < file.Length && count < 6; i += splitSize)
@@ -96,8 +101,8 @@ namespace Crypto_Project
                 }
                 byte[] Finalbuffer = new byte[splitSize + file.Length % 7];
                 Buffer.BlockCopy(file, countSize, Finalbuffer, 0, Finalbuffer.Length);
-                horcruxes[6] = Finalbuffer;               
-                
+                horcruxes[6] = Finalbuffer;
+
                 return horcruxes;
             }
             catch
@@ -106,25 +111,25 @@ namespace Crypto_Project
             }
         }
 
-        public byte[] combineEncryptedFiles(byte[][] files)
+        public byte[] combineFiles(byte[][] files)
         {
             try
             {
                 int size = 0;
                 int offset = 0;
-                for(int i =0; i<files.Length;i++)
+                for (int i = 0; i < files.Length; i++)
                 {
                     size += files[i].Length;
                 }
 
                 byte[] combined = new byte[size];
-                
-                foreach(byte[] file in files)
+
+                foreach (byte[] file in files)
                 {
                     System.Buffer.BlockCopy(file, 0, combined, offset, file.Length);
                     offset += file.Length;
                 }
-                
+
                 return combined;
             }
             catch

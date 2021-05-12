@@ -239,10 +239,10 @@ namespace Crypto_Project
                     {
                         key = Encoding.UTF8.GetBytes(txtOAKey.Text);
                         AESHorcrux aes = new AESHorcrux();
-                        outputFile = aes.encryptFile(openFileDialog1.FileName, key);
-                        byte[][] outFiles = aes.splitEncrytedFile(outputFile);                                         
-                        
-                        if(AESHorcruxSaveEfiles(outFiles)&& outFiles != null)
+                        outputFile = File.ReadAllBytes(openFileDialog1.FileName);
+                        byte[][] outFiles = aes.splitFiles(outputFile);
+                        byte[][] encrypted = aes.encryptFile(outFiles, key);
+                        if(AESHorcruxSaveEfiles(encrypted) && encrypted != null)
                         {
                             MessageBox.Show("Operation Successful", "File created", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                         }
@@ -265,8 +265,8 @@ namespace Crypto_Project
 
                         key = Encoding.UTF8.GetBytes(txtOAKey.Text);
                         AESHorcrux aes = new AESHorcrux();
-                        outputFile = aes.combineEncryptedFiles(inFiles);
-                        outputFile = aes.decryptFile(openFileDialog1.FileName, key);
+                        byte[][] decrypted = aes.decryptFile(inFiles, key);
+                        outputFile = aes.combineFiles(decrypted);                  
                         if (AESHorcruxSaveDfiles(outputFile) && outputFile != null) ;
                         {
                             MessageBox.Show("Operation Successful", "File created", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);

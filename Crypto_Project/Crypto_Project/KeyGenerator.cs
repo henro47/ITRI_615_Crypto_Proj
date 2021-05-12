@@ -14,7 +14,6 @@ namespace Crypto_Project
 
         public byte[] generateKey()
         {
-            string key = "";
             using (RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider())
             {
                 byte[] randomBytes = new byte[LENGTH];
