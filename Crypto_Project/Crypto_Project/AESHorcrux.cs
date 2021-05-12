@@ -111,17 +111,20 @@ namespace Crypto_Project
             try
             {
                 int size = 0;
+                int offset = 0;
                 for(int i =0; i<files.Length;i++)
                 {
                     size += files[i].Length;
                 }
 
                 byte[] combined = new byte[size];
-
-                for(int i = 0; i <files.Length;i++)
+                
+                foreach(byte[] file in files)
                 {
-                    System.Buffer.BlockCopy(files[i], 0, combined, 0, files[i].Length);
+                    System.Buffer.BlockCopy(file, 0, combined, offset, file.Length);
+                    offset += file.Length;
                 }
+                
                 return combined;
             }
             catch

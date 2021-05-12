@@ -260,7 +260,7 @@ namespace Crypto_Project
                         byte[][] inFiles = new byte[filesNames.Length][];
                         for(int i =0; i<filesNames.Length;i++)
                         {
-                            inFiles[i] = Encoding.UTF8.GetBytes(filesNames[i]);
+                            inFiles[i] = File.ReadAllBytes(filesNames[i]);
                         }
 
                         key = Encoding.UTF8.GetBytes(txtOAKey.Text);
