@@ -13,73 +13,73 @@ namespace Crypto_Project
         public byte[][] encryptFile(byte[][] inputFiles, byte[] key)
         {
 
-            //try
-            //{
-            byte[][] encryptedFiles = new byte[inputFiles.Length][];
-            int count = 0;
-            foreach (byte[] file in inputFiles)
+            try
             {
-
-                using (var AesService = new AesCryptoServiceProvider())
+                byte[][] encryptedFiles = new byte[inputFiles.Length][];
+                int count = 0;
+                foreach (byte[] file in inputFiles)
                 {
-                    AesService.IV = key;
-                    AesService.Key = key;
-                    AesService.Mode = CipherMode.CBC;
-                    AesService.Padding = PaddingMode.PKCS7;
 
-                    using (var memStream = new MemoryStream())
+                    using (var AesService = new AesCryptoServiceProvider())
                     {
-                        CryptoStream cryptoStream = new CryptoStream(memStream, AesService.CreateEncryptor(), CryptoStreamMode.Write);
-                        cryptoStream.Write(file, 0, file.Length);
-                        cryptoStream.FlushFinalBlock();
-                        encryptedFiles[count] = memStream.ToArray();
-                        count++;
+                        AesService.IV = key;
+                        AesService.Key = key;
+                        AesService.Mode = CipherMode.CBC;
+                        AesService.Padding = PaddingMode.PKCS7;
+
+                        using (var memStream = new MemoryStream())
+                        {
+                            CryptoStream cryptoStream = new CryptoStream(memStream, AesService.CreateEncryptor(), CryptoStreamMode.Write);
+                            cryptoStream.Write(file, 0, file.Length);
+                            cryptoStream.FlushFinalBlock();
+                            encryptedFiles[count] = memStream.ToArray();
+                            count++;
+                        }
                     }
                 }
-            }
 
-            return encryptedFiles;
-            // }
-            //catch
-            //{
-            //  return null;
-            // }
+                return encryptedFiles;
+            }
+            catch
+            {
+                return null;
+            }
 
         }
 
         public byte[][] decryptFile(byte[][] inputFiles, byte[] key)
         {
-            //try
-            //{
-            byte[][] decryptedFiles = new byte[inputFiles.Length][];
-            int count = 0;
-            foreach (byte[] file in inputFiles)
-            { 
-                using (var AesService = new AesCryptoServiceProvider())
+            try
+            {
+                byte[][] decryptedFiles = new byte[inputFiles.Length][];
+                int count = 0;
+                foreach (byte[] file in inputFiles)
                 {
-                    AesService.IV = key;
-                    AesService.Key = key;
-                    AesService.Mode = CipherMode.CBC;
-                    AesService.Padding = PaddingMode.PKCS7;
-
-                    using (var memStream = new MemoryStream())
+                    using (var AesService = new AesCryptoServiceProvider())
                     {
-                        CryptoStream cryptoStream = new CryptoStream(memStream, AesService.CreateDecryptor(), CryptoStreamMode.Write);
-                        cryptoStream.Write(file, 0, file.Length);
-                        cryptoStream.FlushFinalBlock();
+                        AesService.IV = key;
+                        AesService.Key = key;
+                        AesService.Mode = CipherMode.CBC;
+                        AesService.Padding = PaddingMode.PKCS7;
 
-                        decryptedFiles[count] = memStream.ToArray();
-                        count++;
+                        using (var memStream = new MemoryStream())
+                        {
+                            CryptoStream cryptoStream = new CryptoStream(memStream, AesService.CreateDecryptor(), CryptoStreamMode.Write);
+                            cryptoStream.Write(file, 0, file.Length);
+                            cryptoStream.FlushFinalBlock();
+
+                            decryptedFiles[count] = memStream.ToArray();
+                            count++;
+                        }
                     }
                 }
-            }
 
-            return decryptedFiles;
-            //}
-            //catch
-            // {
-            // return null;
-            //}
+                return decryptedFiles;
+            }
+            catch
+            {
+                return null;
+            }
         }
 
         public byte[][] splitFiles(byte[] file)
