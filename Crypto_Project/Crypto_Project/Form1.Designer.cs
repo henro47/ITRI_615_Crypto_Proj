@@ -44,9 +44,16 @@
             this.tpOwnAlgo = new System.Windows.Forms.TabPage();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.lblOAkey = new System.Windows.Forms.Label();
+            this.txtOAKey = new System.Windows.Forms.TextBox();
+            this.btnOAGenKey = new System.Windows.Forms.Button();
+            this.rbOAEncrypt = new System.Windows.Forms.RadioButton();
+            this.rbOADecrypt = new System.Windows.Forms.RadioButton();
+            this.btnUpload = new System.Windows.Forms.Button();
             this.tcAlgorithms.SuspendLayout();
             this.tpVigenere.SuspendLayout();
             this.tpVernam.SuspendLayout();
+            this.tpOwnAlgo.SuspendLayout();
             this.SuspendLayout();
             // 
             // tcAlgorithms
@@ -198,16 +205,83 @@
             // 
             // tpOwnAlgo
             // 
+            this.tpOwnAlgo.Controls.Add(this.btnUpload);
+            this.tpOwnAlgo.Controls.Add(this.rbOADecrypt);
+            this.tpOwnAlgo.Controls.Add(this.rbOAEncrypt);
+            this.tpOwnAlgo.Controls.Add(this.btnOAGenKey);
+            this.tpOwnAlgo.Controls.Add(this.txtOAKey);
+            this.tpOwnAlgo.Controls.Add(this.lblOAkey);
             this.tpOwnAlgo.Location = new System.Drawing.Point(4, 25);
             this.tpOwnAlgo.Name = "tpOwnAlgo";
             this.tpOwnAlgo.Size = new System.Drawing.Size(885, 439);
             this.tpOwnAlgo.TabIndex = 3;
-            this.tpOwnAlgo.Text = "Own Algo";
+            this.tpOwnAlgo.Text = "AES_Horcrux";
             this.tpOwnAlgo.UseVisualStyleBackColor = true;
             // 
             // openFileDialog1
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // lblOAkey
+            // 
+            this.lblOAkey.AutoSize = true;
+            this.lblOAkey.Location = new System.Drawing.Point(14, 21);
+            this.lblOAkey.Name = "lblOAkey";
+            this.lblOAkey.Size = new System.Drawing.Size(107, 17);
+            this.lblOAkey.TabIndex = 1;
+            this.lblOAkey.Text = "Encryption Key:";
+            // 
+            // txtOAKey
+            // 
+            this.txtOAKey.Location = new System.Drawing.Point(127, 18);
+            this.txtOAKey.Name = "txtOAKey";
+            this.txtOAKey.Size = new System.Drawing.Size(178, 22);
+            this.txtOAKey.TabIndex = 2;
+            // 
+            // btnOAGenKey
+            // 
+            this.btnOAGenKey.Location = new System.Drawing.Point(17, 61);
+            this.btnOAGenKey.Name = "btnOAGenKey";
+            this.btnOAGenKey.Size = new System.Drawing.Size(295, 44);
+            this.btnOAGenKey.TabIndex = 3;
+            this.btnOAGenKey.Text = "Generate Key";
+            this.btnOAGenKey.UseVisualStyleBackColor = true;
+            this.btnOAGenKey.Click += new System.EventHandler(this.btnOAGenKey_Click);
+            // 
+            // rbOAEncrypt
+            // 
+            this.rbOAEncrypt.AutoSize = true;
+            this.rbOAEncrypt.Checked = true;
+            this.rbOAEncrypt.Location = new System.Drawing.Point(769, 21);
+            this.rbOAEncrypt.Name = "rbOAEncrypt";
+            this.rbOAEncrypt.Size = new System.Drawing.Size(103, 21);
+            this.rbOAEncrypt.TabIndex = 5;
+            this.rbOAEncrypt.TabStop = true;
+            this.rbOAEncrypt.Text = "Encrypt File";
+            this.rbOAEncrypt.UseVisualStyleBackColor = true;
+            this.rbOAEncrypt.CheckedChanged += new System.EventHandler(this.rbOAEncrypt_CheckedChanged);
+            // 
+            // rbOADecrypt
+            // 
+            this.rbOADecrypt.AutoSize = true;
+            this.rbOADecrypt.Location = new System.Drawing.Point(769, 48);
+            this.rbOADecrypt.Name = "rbOADecrypt";
+            this.rbOADecrypt.Size = new System.Drawing.Size(104, 21);
+            this.rbOADecrypt.TabIndex = 6;
+            this.rbOADecrypt.TabStop = true;
+            this.rbOADecrypt.Text = "Decrypt File";
+            this.rbOADecrypt.UseVisualStyleBackColor = true;
+            this.rbOADecrypt.CheckedChanged += new System.EventHandler(this.rbOADecrypt_CheckedChanged);
+            // 
+            // btnUpload
+            // 
+            this.btnUpload.Location = new System.Drawing.Point(17, 166);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(165, 46);
+            this.btnUpload.TabIndex = 7;
+            this.btnUpload.Text = "Upload File(s)";
+            this.btnUpload.UseVisualStyleBackColor = true;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click_1);
             // 
             // frmMain
             // 
@@ -223,6 +297,8 @@
             this.tpVigenere.PerformLayout();
             this.tpVernam.ResumeLayout(false);
             this.tpVernam.PerformLayout();
+            this.tpOwnAlgo.ResumeLayout(false);
+            this.tpOwnAlgo.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -245,6 +321,12 @@
         private System.Windows.Forms.Button btnVerUpload;
         private System.Windows.Forms.RadioButton rbVerDecrypt;
         private System.Windows.Forms.RadioButton rbVerEncrypt;
+        private System.Windows.Forms.Button btnUpload;
+        private System.Windows.Forms.RadioButton rbOADecrypt;
+        private System.Windows.Forms.RadioButton rbOAEncrypt;
+        private System.Windows.Forms.Button btnOAGenKey;
+        private System.Windows.Forms.TextBox txtOAKey;
+        private System.Windows.Forms.Label lblOAkey;
     }
 }
 
