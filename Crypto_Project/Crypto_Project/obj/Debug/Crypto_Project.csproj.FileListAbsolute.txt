@@ -8,3 +8,13 @@ Z:\Programming Languages\C#\ITRI_615_Crypto_Proj\Crypto_Project\Crypto_Project\o
 Z:\Programming Languages\C#\ITRI_615_Crypto_Proj\Crypto_Project\Crypto_Project\obj\Debug\Crypto_Project.csproj.CoreCompileInputs.cache
 Z:\Programming Languages\C#\ITRI_615_Crypto_Proj\Crypto_Project\Crypto_Project\obj\Debug\Crypto_Project.exe
 Z:\Programming Languages\C#\ITRI_615_Crypto_Proj\Crypto_Project\Crypto_Project\obj\Debug\Crypto_Project.pdb
+C:\Users\Duncan\OneDrive\Desktop\ITRI 615 (Security)\ITRI_615_Crypto_Proj-main\Crypto_Project\Crypto_Project\bin\Debug\Crypto_Project.exe.config
+C:\Users\Duncan\OneDrive\Desktop\ITRI 615 (Security)\ITRI_615_Crypto_Proj-main\Crypto_Project\Crypto_Project\bin\Debug\Crypto_Project.exe
+C:\Users\Duncan\OneDrive\Desktop\ITRI 615 (Security)\ITRI_615_Crypto_Proj-main\Crypto_Project\Crypto_Project\bin\Debug\Crypto_Project.pdb
+C:\Users\Duncan\OneDrive\Desktop\ITRI 615 (Security)\ITRI_615_Crypto_Proj-main\Crypto_Project\Crypto_Project\obj\Debug\Crypto_Project.csprojAssemblyReference.cache
+C:\Users\Duncan\OneDrive\Desktop\ITRI 615 (Security)\ITRI_615_Crypto_Proj-main\Crypto_Project\Crypto_Project\obj\Debug\Crypto_Project.frmMain.resources
+C:\Users\Duncan\OneDrive\Desktop\ITRI 615 (Security)\ITRI_615_Crypto_Proj-main\Crypto_Project\Crypto_Project\obj\Debug\Crypto_Project.Properties.Resources.resources
+C:\Users\Duncan\OneDrive\Desktop\ITRI 615 (Security)\ITRI_615_Crypto_Proj-main\Crypto_Project\Crypto_Project\obj\Debug\Crypto_Project.csproj.GenerateResource.cache
+C:\Users\Duncan\OneDrive\Desktop\ITRI 615 (Security)\ITRI_615_Crypto_Proj-main\Crypto_Project\Crypto_Project\obj\Debug\Crypto_Project.csproj.CoreCompileInputs.cache
+C:\Users\Duncan\OneDrive\Desktop\ITRI 615 (Security)\ITRI_615_Crypto_Proj-main\Crypto_Project\Crypto_Project\obj\Debug\Crypto_Project.exe
+C:\Users\Duncan\OneDrive\Desktop\ITRI 615 (Security)\ITRI_615_Crypto_Proj-main\Crypto_Project\Crypto_Project\obj\Debug\Crypto_Project.pdb
