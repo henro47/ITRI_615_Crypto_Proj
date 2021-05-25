@@ -43,18 +43,21 @@ namespace Crypto_Project
                         if (rbEncryptVig.Checked)
                         {
                             outputResult = vigenere.encryptVigenere(inputFile, txtVigKey.Text);
+                            setUpSaveFileDialogE(saveFileDialog1);
                         }
                         else
                         {
                             outputResult = vigenere.decryptVigenere(inputFile, txtVigKey.Text);
+                            setUpSaveFileDialogD(saveFileDialog1);
                         }
-
+                  
                         saveFileDialog1.InitialDirectory = @"C:\";
                         if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                         {
                             try
                             { 
                                 File.WriteAllBytes(saveFileDialog1.FileName, outputResult);
+                                File.Delete(openFileDialog1.FileName);
                                 MessageBox.Show("Operation Successful", "File created", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                                 
                             }
@@ -128,13 +131,15 @@ namespace Crypto_Project
                 if(openFileDialog1.ShowDialog() == DialogResult.OK)
                 {
                     inputFile = File.ReadAllBytes(openFileDialog1.FileName);
-                    if(rbVerEncrypt.Checked)
+                    File.Delete(openFileDialog1.FileName);
+                    if (rbVerEncrypt.Checked)
                     {
                         KeyGenerator generator = new KeyGenerator();
                         key = generator.generateKey(inputFile.Length);
                         VernamCipher vernam = new VernamCipher();
                         outputFile = vernam.executeVernam(inputFile, key);
                         vernamFileSaveEncrypt(outputFile, key);
+                        File.Delete(openFileDialog1.FileName);
                     }
                     else
                     {
@@ -143,11 +148,13 @@ namespace Crypto_Project
                         if(openFileDialog1.ShowDialog() == DialogResult.OK)
                         {
                             key = File.ReadAllBytes(openFileDialog1.FileName);
+                            File.Delete(openFileDialog1.FileName);
                             VernamCipher vernam = new VernamCipher();
                             outputFile = vernam.executeVernam(inputFile, key);
                             vernamFileSaveDecrypt(outputFile);
+                            
                         }
-                    }        
+                    }                   
                 }
             }
             catch(IOException err)
@@ -160,14 +167,15 @@ namespace Crypto_Project
         private bool vernamFileSaveEncrypt(byte[] file, byte[] key)
         {
             bool isSuccessful = false;
+            setUpSaveFileDialogE(saveFileDialog1);
             saveFileDialog1.InitialDirectory = @"C:\";
             saveFileDialog1.Title = "Save Encrypted File and Key";
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 try
-                {
+                {                 
                     File.WriteAllBytes(saveFileDialog1.FileName, file);
-                    File.WriteAllBytes(saveFileDialog1.FileName+ "_key.dat", key);
+                    File.WriteAllBytes(saveFileDialog1.FileName+ "_key", key);
                     MessageBox.Show("Operation Successful", "File created and key written to file.", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     isSuccessful = true;
                 }
@@ -183,12 +191,13 @@ namespace Crypto_Project
         private bool vernamFileSaveDecrypt(byte[] file)
         {
             bool isSuccessful = false;
+            setUpSaveFileDialogD(saveFileDialog1);
             saveFileDialog1.InitialDirectory = @"C:\";
             saveFileDialog1.Title = "Save Decrypted File";
             if (saveFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 try
-                {
+                {                   
                     File.WriteAllBytes(saveFileDialog1.FileName, file);
                     MessageBox.Show("Operation Successful", "File created", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
                     isSuccessful = true;
@@ -245,6 +254,7 @@ namespace Crypto_Project
                         if(AESHorcruxSaveEfiles(encrypted) && encrypted != null)
                         {
                             MessageBox.Show("Operation Successful", "File created", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            File.Delete(openFileDialog1.FileName);
                         }
                     }
                 }
@@ -270,6 +280,10 @@ namespace Crypto_Project
                         if (AESHorcruxSaveDfiles(outputFile) && outputFile != null) ;
                         {
                             MessageBox.Show("Operation Successful", "File created", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                            foreach(string file in filesNames)
+                            {
+                                File.Delete(file);
+                            }
                         }
                     }
                 }
@@ -284,6 +298,7 @@ namespace Crypto_Project
         {
             try
             {
+                setUpSaveFileDialogE(saveFileDialog1);
                 saveFileDialog1.InitialDirectory = @"C:\";
                 saveFileDialog1.Title = "Save file(s)";
                 
@@ -308,6 +323,7 @@ namespace Crypto_Project
         {
             try
             {
+                setUpSaveFileDialogD(saveFileDialog1);
                 saveFileDialog1.InitialDirectory = @"C:\";
                 saveFileDialog1.Title = "Save any File";
                 if(saveFileDialog1.ShowDialog() == DialogResult.OK)
@@ -322,6 +338,24 @@ namespace Crypto_Project
                 MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+        }
+
+        private void setUpSaveFileDialogE(SaveFileDialog dialog)
+        {
+            dialog.Filter = "Data Files (*.dat)|*.dat";
+            dialog.DefaultExt = "dat";
+            dialog.AddExtension = true;
+        }
+
+        private void setUpSaveFileDialogD(SaveFileDialog dialog)
+        {
+            dialog.Filter = "Word Documents|*.doc|Excel Worksheets|*.xls|PowerPoint Presentations|*.ppt"
+            + "|Office Files|*.doc;*.xls;*.ppt"
+            + "|All Files|*.*"
+            + "|Image files| *.jpg; *.jpeg; *.jpe; *.jfif; *.png"
+            + "|PDF| *.pdf";
+            dialog.DefaultExt = "";
+            dialog.AddExtension = true;
         }
     }
 }
