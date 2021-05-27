@@ -357,5 +357,69 @@ namespace Crypto_Project
             dialog.DefaultExt = "";
             dialog.AddExtension = true;
         }
+
+        private void btnTransGen_Click(object sender, EventArgs e)
+        {
+            KeyGenerator generator = new KeyGenerator();
+            txtTransKey.Text = Convert.ToBase64String(generator.generateKey());
+        }
+
+        private void btnTransUpload_Click(object sender, EventArgs e)
+        {
+            if(txtTransKey.Text != "")
+            {
+                byte[] inputFile;
+                string key = txtTransKey.Text;
+
+                openFileDialog1.InitialDirectory = @"C:\";
+                
+                if(openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    inputFile = File.ReadAllBytes(openFileDialog1.FileName);
+                    if(rbTransEncrypt.Checked)
+                    {
+                        ColumnarTranspositionCipher trans = new ColumnarTranspositionCipher();
+                        byte[] output = trans.doColumnar(inputFile, key);
+                        saveFileDialog1.InitialDirectory = @"C:\";
+                        setUpSaveFileDialogE(saveFileDialog1);
+                        if(saveFileDialog1.ShowDialog() == DialogResult.OK)
+                        {
+                            File.WriteAllBytes(saveFileDialog1.FileName, output);
+                        }
+                    }
+                    else
+                    {
+                        ColumnarTranspositionCipher trans = new ColumnarTranspositionCipher();
+                        byte[] output = trans.doColumnar(inputFile, key);
+                        saveFileDialog1.InitialDirectory = @"C:\";
+                        setUpSaveFileDialogD(saveFileDialog1);
+                        if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                        {
+                            File.WriteAllBytes(saveFileDialog1.FileName, output);
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter or generate key", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void rbTransEncrypt_CheckedChanged(object sender, EventArgs e)
+        {
+            if(rbTransDecrypt.Checked)
+            {
+                rbTransEncrypt.Checked = false;
+            }
+        }
+
+        private void rbTransDecrypt_CheckedChanged(object sender, EventArgs e)
+        {
+            if(rbTransEncrypt.Checked)
+            {
+                rbTransDecrypt.Checked = false;
+            }
+        }
     }
 }
