@@ -11,34 +11,43 @@ namespace Crypto_Project
 
         public byte[] doColumnar(byte[] inputFile, string key)
         {
-            int colNo = key.Length;
-            int rowNo = inputFile.Length / colNo;
-
-
-            int countSize = 0;
-            int count = 0;
-            byte[][] columnTrans = new byte[rowNo][];
-
-            for (int i = 0; i < inputFile.Length && count < rowNo - 1; i += colNo)
+            try
             {
-                byte[] buffer = new byte[colNo];
-                Buffer.BlockCopy(inputFile, i, buffer, 0, colNo);
-                columnTrans[count] = buffer;
-                countSize += colNo;
-                count++;
+
+
+                int colNo = key.Length;
+                int rowNo = inputFile.Length / colNo;
+
+
+                int countSize = 0;
+                int count = 0;
+                byte[][] columnTrans = new byte[rowNo][];
+
+                for (int i = 0; i < inputFile.Length && count < rowNo - 1; i += colNo)
+                {
+                    byte[] buffer = new byte[colNo];
+                    Buffer.BlockCopy(inputFile, i, buffer, 0, colNo);
+                    columnTrans[count] = buffer;
+                    countSize += colNo;
+                    count++;
+                }
+
+                byte[] finalRow = new byte[colNo + inputFile.Length % colNo];
+                Buffer.BlockCopy(inputFile, countSize, finalRow, 0, finalRow.Length);
+                columnTrans[rowNo - 1] = finalRow;
+
+                for (int i = 0; i < columnTrans.Length; i++)
+                {
+                    Array.Reverse(columnTrans[i]);
+                }
+
+                byte[] output = combineArrays(columnTrans);
+                return output;
             }
-
-            byte[] finalRow = new byte[colNo + inputFile.Length % colNo];
-            Buffer.BlockCopy(inputFile, countSize, finalRow, 0, finalRow.Length);
-            columnTrans[rowNo - 1] = finalRow;
-
-            for(int i = 0; i < columnTrans.Length;i++)
+            catch
             {
-                Array.Reverse(columnTrans[i]);
+                return null;
             }
-
-            byte[] output = combineArrays(columnTrans);
-            return output;
 
         }
 

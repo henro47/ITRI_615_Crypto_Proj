@@ -384,7 +384,19 @@ namespace Crypto_Project
                         setUpSaveFileDialogE(saveFileDialog1);
                         if(saveFileDialog1.ShowDialog() == DialogResult.OK)
                         {
-                            File.WriteAllBytes(saveFileDialog1.FileName, output);
+                            try
+                            {
+                                if (output != null)
+                                {
+                                    File.WriteAllBytes(saveFileDialog1.FileName, output);
+                                    File.Delete(openFileDialog1.FileName);
+                                    MessageBox.Show("Operation Successful", "File created", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                }
+                            }
+                            catch(IOException err)
+                            {
+                                MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                     }
                     else
@@ -395,7 +407,19 @@ namespace Crypto_Project
                         setUpSaveFileDialogD(saveFileDialog1);
                         if (saveFileDialog1.ShowDialog() == DialogResult.OK)
                         {
-                            File.WriteAllBytes(saveFileDialog1.FileName, output);
+                            try
+                            {
+                                if(output != null)
+                                {
+                                    File.WriteAllBytes(saveFileDialog1.FileName, output);
+                                    File.Delete(openFileDialog1.FileName);
+                                    MessageBox.Show("Operation Successful", "File created", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                }
+                            }
+                            catch(IOException err)
+                            {
+                                MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
                         }
                     }
                 }
