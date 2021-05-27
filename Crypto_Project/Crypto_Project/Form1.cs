@@ -100,6 +100,8 @@ namespace Crypto_Project
         private void tcAlgorithms_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtVigKey.Text = "";
+            txtTransKey.Text = "";
+            txtOAKey.Text = "";
         }
 
         private void rbVerEncrypt_CheckedChanged(object sender, EventArgs e)
