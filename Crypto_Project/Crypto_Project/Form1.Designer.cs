@@ -50,9 +50,16 @@
             this.lblOAkey = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.rbTransDecrypt = new System.Windows.Forms.RadioButton();
+            this.rbTransEncrypt = new System.Windows.Forms.RadioButton();
+            this.btnTransUpload = new System.Windows.Forms.Button();
+            this.btnTransGen = new System.Windows.Forms.Button();
+            this.txtTransKey = new System.Windows.Forms.TextBox();
+            this.lblTransKey = new System.Windows.Forms.Label();
             this.tcAlgorithms.SuspendLayout();
             this.tpVigenere.SuspendLayout();
             this.tpVernam.SuspendLayout();
+            this.tpTransposition.SuspendLayout();
             this.tpOwnAlgo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -196,6 +203,12 @@
             // 
             // tpTransposition
             // 
+            this.tpTransposition.Controls.Add(this.rbTransDecrypt);
+            this.tpTransposition.Controls.Add(this.rbTransEncrypt);
+            this.tpTransposition.Controls.Add(this.btnTransUpload);
+            this.tpTransposition.Controls.Add(this.btnTransGen);
+            this.tpTransposition.Controls.Add(this.txtTransKey);
+            this.tpTransposition.Controls.Add(this.lblTransKey);
             this.tpTransposition.Location = new System.Drawing.Point(4, 25);
             this.tpTransposition.Name = "tpTransposition";
             this.tpTransposition.Size = new System.Drawing.Size(885, 439);
@@ -283,6 +296,67 @@
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
+            // rbTransDecrypt
+            // 
+            this.rbTransDecrypt.AutoSize = true;
+            this.rbTransDecrypt.Location = new System.Drawing.Point(724, 47);
+            this.rbTransDecrypt.Name = "rbTransDecrypt";
+            this.rbTransDecrypt.Size = new System.Drawing.Size(104, 21);
+            this.rbTransDecrypt.TabIndex = 11;
+            this.rbTransDecrypt.TabStop = true;
+            this.rbTransDecrypt.Text = "Decrypt File";
+            this.rbTransDecrypt.UseVisualStyleBackColor = true;
+            this.rbTransDecrypt.CheckedChanged += new System.EventHandler(this.rbTransDecrypt_CheckedChanged);
+            // 
+            // rbTransEncrypt
+            // 
+            this.rbTransEncrypt.AutoSize = true;
+            this.rbTransEncrypt.Checked = true;
+            this.rbTransEncrypt.Location = new System.Drawing.Point(724, 13);
+            this.rbTransEncrypt.Name = "rbTransEncrypt";
+            this.rbTransEncrypt.Size = new System.Drawing.Size(103, 21);
+            this.rbTransEncrypt.TabIndex = 10;
+            this.rbTransEncrypt.TabStop = true;
+            this.rbTransEncrypt.Text = "Encrypt File";
+            this.rbTransEncrypt.UseVisualStyleBackColor = true;
+            this.rbTransEncrypt.CheckedChanged += new System.EventHandler(this.rbTransEncrypt_CheckedChanged);
+            // 
+            // btnTransUpload
+            // 
+            this.btnTransUpload.Location = new System.Drawing.Point(12, 123);
+            this.btnTransUpload.Name = "btnTransUpload";
+            this.btnTransUpload.Size = new System.Drawing.Size(165, 46);
+            this.btnTransUpload.TabIndex = 9;
+            this.btnTransUpload.Text = "Upload File";
+            this.btnTransUpload.UseVisualStyleBackColor = true;
+            this.btnTransUpload.Click += new System.EventHandler(this.btnTransUpload_Click);
+            // 
+            // btnTransGen
+            // 
+            this.btnTransGen.Location = new System.Drawing.Point(12, 47);
+            this.btnTransGen.Name = "btnTransGen";
+            this.btnTransGen.Size = new System.Drawing.Size(295, 44);
+            this.btnTransGen.TabIndex = 8;
+            this.btnTransGen.Text = "Generate Key";
+            this.btnTransGen.UseVisualStyleBackColor = true;
+            this.btnTransGen.Click += new System.EventHandler(this.btnTransGen_Click);
+            // 
+            // txtTransKey
+            // 
+            this.txtTransKey.Location = new System.Drawing.Point(122, 14);
+            this.txtTransKey.Name = "txtTransKey";
+            this.txtTransKey.Size = new System.Drawing.Size(178, 22);
+            this.txtTransKey.TabIndex = 7;
+            // 
+            // lblTransKey
+            // 
+            this.lblTransKey.AutoSize = true;
+            this.lblTransKey.Location = new System.Drawing.Point(9, 17);
+            this.lblTransKey.Name = "lblTransKey";
+            this.lblTransKey.Size = new System.Drawing.Size(107, 17);
+            this.lblTransKey.TabIndex = 6;
+            this.lblTransKey.Text = "Encryption Key:";
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -297,6 +371,8 @@
             this.tpVigenere.PerformLayout();
             this.tpVernam.ResumeLayout(false);
             this.tpVernam.PerformLayout();
+            this.tpTransposition.ResumeLayout(false);
+            this.tpTransposition.PerformLayout();
             this.tpOwnAlgo.ResumeLayout(false);
             this.tpOwnAlgo.PerformLayout();
             this.ResumeLayout(false);
@@ -327,6 +403,12 @@
         private System.Windows.Forms.Button btnOAGenKey;
         private System.Windows.Forms.TextBox txtOAKey;
         private System.Windows.Forms.Label lblOAkey;
+        private System.Windows.Forms.RadioButton rbTransDecrypt;
+        private System.Windows.Forms.RadioButton rbTransEncrypt;
+        private System.Windows.Forms.Button btnTransUpload;
+        private System.Windows.Forms.Button btnTransGen;
+        private System.Windows.Forms.TextBox txtTransKey;
+        private System.Windows.Forms.Label lblTransKey;
     }
 }
 

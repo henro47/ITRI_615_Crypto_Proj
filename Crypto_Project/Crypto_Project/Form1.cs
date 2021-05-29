@@ -100,6 +100,8 @@ namespace Crypto_Project
         private void tcAlgorithms_SelectedIndexChanged(object sender, EventArgs e)
         {
             txtVigKey.Text = "";
+            txtTransKey.Text = "";
+            txtOAKey.Text = "";
         }
 
         private void rbVerEncrypt_CheckedChanged(object sender, EventArgs e)
@@ -356,6 +358,94 @@ namespace Crypto_Project
             + "|PDF| *.pdf";
             dialog.DefaultExt = "";
             dialog.AddExtension = true;
+        }
+
+        private void btnTransGen_Click(object sender, EventArgs e)
+        {
+            KeyGenerator generator = new KeyGenerator();
+            txtTransKey.Text = Convert.ToBase64String(generator.generateKey());
+        }
+
+        private void btnTransUpload_Click(object sender, EventArgs e)
+        {
+            if(txtTransKey.Text != "")
+            {
+                byte[] inputFile;
+                string key = txtTransKey.Text;
+
+                openFileDialog1.InitialDirectory = @"C:\";
+                
+                if(openFileDialog1.ShowDialog() == DialogResult.OK)
+                {
+                    inputFile = File.ReadAllBytes(openFileDialog1.FileName);
+                    if(rbTransEncrypt.Checked)
+                    {
+                        ColumnarTranspositionCipher trans = new ColumnarTranspositionCipher();
+                        byte[] output = trans.doColumnar(inputFile, key);
+                        saveFileDialog1.InitialDirectory = @"C:\";
+                        setUpSaveFileDialogE(saveFileDialog1);
+                        if(saveFileDialog1.ShowDialog() == DialogResult.OK)
+                        {
+                            try
+                            {
+                                if (output != null)
+                                {
+                                    File.WriteAllBytes(saveFileDialog1.FileName, output);
+                                    File.Delete(openFileDialog1.FileName);
+                                    MessageBox.Show("Operation Successful", "File created", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                }
+                            }
+                            catch(IOException err)
+                            {
+                                MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        ColumnarTranspositionCipher trans = new ColumnarTranspositionCipher();
+                        byte[] output = trans.doColumnar(inputFile, key);
+                        saveFileDialog1.InitialDirectory = @"C:\";
+                        setUpSaveFileDialogD(saveFileDialog1);
+                        if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                        {
+                            try
+                            {
+                                if(output != null)
+                                {
+                                    File.WriteAllBytes(saveFileDialog1.FileName, output);
+                                    File.Delete(openFileDialog1.FileName);
+                                    MessageBox.Show("Operation Successful", "File created", MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                                }
+                            }
+                            catch(IOException err)
+                            {
+                                MessageBox.Show(err.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please enter or generate key", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void rbTransEncrypt_CheckedChanged(object sender, EventArgs e)
+        {
+            if(rbTransDecrypt.Checked)
+            {
+                rbTransEncrypt.Checked = false;
+            }
+        }
+
+        private void rbTransDecrypt_CheckedChanged(object sender, EventArgs e)
+        {
+            if(rbTransEncrypt.Checked)
+            {
+                rbTransDecrypt.Checked = false;
+            }
         }
     }
 }
